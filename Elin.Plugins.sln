@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalSlash", "MetalSlash\Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blacksouls_Support_Dll", "Blacksouls_Support_Dll\Blacksouls_Support_Dll.csproj", "{7D1D8C2C-3014-47F9-BA8D-0DF673C6E329}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Girls_Frontline_Support_Dll", "Girls_Frontline_Support_Dll\Girls_Frontline_Support_Dll.csproj", "{9FD5ED10-F54F-404D-9236-B3BF77481755}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7D1D8C2C-3014-47F9-BA8D-0DF673C6E329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D1D8C2C-3014-47F9-BA8D-0DF673C6E329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D1D8C2C-3014-47F9-BA8D-0DF673C6E329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FD5ED10-F54F-404D-9236-B3BF77481755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD5ED10-F54F-404D-9236-B3BF77481755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD5ED10-F54F-404D-9236-B3BF77481755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD5ED10-F54F-404D-9236-B3BF77481755}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

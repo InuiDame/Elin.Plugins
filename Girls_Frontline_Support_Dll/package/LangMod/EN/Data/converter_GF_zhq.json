@@ -1,0 +1,230 @@
+{
+    "DecaySpeed": 500,
+    "IdMsg": "brew",
+    "Conversions": {
+        "origin:fruit": [
+            {
+                "Id": "GF_base3",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:vegi": [
+            {
+                "Id": "GF_base3",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:meat": [
+            {
+                "Id": "GF_base4",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:fish": [
+            {
+                "Id": "GF_base4",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:dagger": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:sword": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:axe": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:blunt": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:polearm": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:scythe": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:staff": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:martial": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:cane": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:bow": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:crossbow": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:gun": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:throw": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:shield": [
+            {
+                "Id": "GF_base1",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:processor": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:crafter": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:facility": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:ext": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:bed": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:chair": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:deco": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:mount": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:plantpot": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:door": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:figure": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:_furniture": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:_furniture": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ],
+		"origin:window": [
+            {
+                "Id": "GF_base2",
+                "Num": 1,
+                "PriceAdd": "base * 0.25"
+            }
+        ]
+    }
+}

@@ -1,0 +1,78 @@
+{
+    "GF_MP5": {
+        "Num": 3,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSound": "attack_gun",
+		"IdSoundEject": "bullet_drop",
+        "IdSprite": "ranged_gun",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+			"y": 0.04
+        }
+    },
+	"GF_MP5Love": {
+        "Num": 3,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSound": "attack_gun",
+		"IdSoundEject": "bullet_drop",
+        "IdSprite": "ranged_gun",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+			"y": 0.04
+        }
+    },
+	"GF_MP5mod3": {
+        "Num": 3,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSound": "attack_gun",
+		"IdSoundEject": "bullet_drop",
+        "IdSprite": "ranged_gun",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+			"y": 0.04
+        }
+    },
+	"GF_TPS": {
+        "Num": 1,
+        "Delay": 0.3,
+        "IdEffect": "gunfire",
+        "IdSound": "attack_gun_shotgun",
+		"IdSoundEject": "bullet_drop",
+        "IdSprite": "ranged_gun",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+			"y": 0.04
+        }
+    },
+	"GF_HK416Agent2": {
+        "Num": 1,
+        "Delay": 0.3,
+        "IdEffect": "gunfire",
+        "IdSound": "Explosion7",
+        "IdSprite": "Radial Explosion1_3",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+			"y": 0.04
+        }
+    },"GF_HK416Agent1": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSound": "attack_gun",
+		"IdSoundEject": "bullet_drop",
+        "IdSprite": "ranged_gun",
+        "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+			"y": 0.04
+        }
+    }
+}

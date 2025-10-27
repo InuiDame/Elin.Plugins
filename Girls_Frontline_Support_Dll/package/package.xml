@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meta>
+  <title>少女前线/Girls Frontline MOD(CN/JP/EN)</title>
+  <id>Girls_Frontline_Equipment</id>
+  <author>inui</author>
+  <loadPriority>100</loadPriority>
+  <version>0.23.86</version>
+  <description>
+  独立出来更新的MOD，目前只有MP5角色和枪，枪的换装和角色独立养成，也可以借用炼丹MOD实现属性转移。
+  
+  如何制作本MOD的道具：
+  简易制作中可以制作MOD工作台，在工作台中可制作本MOD的道具。
+  
+  本MOD的道具分类：
+  枪：人形对应的枪械，玩家也可使用。
+  人形制造契约：价格是枪的两倍，被召唤出来的人形概率bug不携带枪械，注意检查。
+  黑卡：制造对应人形的皮肤形态，和本体人形的属性无差别。
+  誓约之证：制造对应人形的誓约形态，基础属性提高10%，拥有独立台词。
+  新型火控单元：制造对应人形的MOD3形态，需要制作誓约形态后获得的回礼作为材料制作，属性获得全面升级，并会获得新技能。
+  （黑卡，誓约之证，新型火控单元都在未来可能成为特殊部位的装备用以直接提供属性和更换立绘）
+  枪械配件：（可携带可镶嵌给远程武器）
+  弹匣：颈位饰品，提供命中和伤害，镶嵌提供弹仓。
+  配件：手指位饰品，提供命中伤害和其他属性，镶嵌提供各种效果。
+  外骨骼：背位饰品，提供回避或防御和其他属性，不可镶嵌。
+  
+  The MOD that has been independently updated currently only includes MP5 characters and guns. Gun dressing and character independent development can also be achieved through the use of alchemy MODs for attribute transfer.
+  
+How to make props for this MOD:
+In simple production, a MOD workbench can be created, where props for this MOD can be made.
+  
+The item categories for this MOD are:
+Gun: A firearm corresponding to a humanoid form, which can also be used by players.
+Humanoid Manufacturing Contract: The price is twice that of a gun, and the probability of summoning a humanoid without carrying a firearm is a bug. Please check carefully.
+Black card: Create skin forms corresponding to the human form, with no difference in attributes from the original human form.
+Proof of Oath: Create a pledge form corresponding to the human form, increase basic attributes by 10%, and have independent dialogue.
+New Fire Control Unit: To create a MOD3 form corresponding to the human form, the reward obtained after making the oath form needs to be used as material for production. Its attributes will be fully upgraded and new skills will be obtained.
+(Black card, proof of oath, new fire control units may become special equipment in the future to directly provide attributes and replace vertical drawings)
+Firearms accessories: (can be carried and embedded into remote weapons)
+Magazine: Neck accessory, providing hit and damage, inset provides magazine.
+Accessories: Finger position jewelry, providing hit damage and other attributes, inlaid for various effects.
+Exoskeleton: a dorsal accessory that provides avoidance or defense and other attributes, and cannot be embedded.
+  
+  独立して更新されたMODは、現在MP 5キャラクターと銃、銃の換装とキャラクターの独立育成のみであり、錬丹MODを借りて属性移行を実現することもできる。
+  
+本MODのアイテムを作成する方法：
+簡易制作ではMODテーブルを作成することができ、テーブルでは本MODの道具を作成することができます。
+  
+本MODのアイテム分類：
+銃：人形に対応した銃器で、プレイヤーも使用できます。
+人形製造契約：価格は銃の2倍、召喚された人形確率バグは銃器を携帯せず、検査に注意する。
+ブラックカード：人形に対応する皮膚形態を作り、本体人形の属性と差がない。
+誓約の証：人形に対応する誓約形態を作り、基礎属性を10%高め、独自のセリフを持つ。
+新型火災制御ユニット：人形に対応したMOD 3形態を製造するには、誓約形態を作成した後に得られる返礼品を材料として製作する必要があり、属性が全面的にアップグレードされ、新しい技能が得られる。
+（ブラックカード、誓約の証、新型火災制御ユニットは将来的に特殊部位になる可能性のある装備用に属性を直接提供し、立ち絵を交換する）
+銃器部品：（長距離武器に装着可能）
+弾倉：首位アクセサリー、命中と傷害を提供し、象眼して弾倉を提供する。
+付属品：指位アクセサリー、命中傷害とその他の属性を提供し、モザイクは各種の効果を提供する。
+外骨格：背面アクセサリー、回避または防御とその他の属性を提供し、モザイクできない。
+
+更新0.1版本
+更新枪械和人形FN TPS
+TPS拥有需要随着时间进行进化的技能：超人气榜单
+技能效果：
+自身获得20点人气值，100点穿甲和30点命中。
+人气值达到20点时:赋予我方全体20%的增伤;
+人气值达到50点时:自身友方单位减少10点受到的伤害;
+人气值达到100点时:我方全体减伤提升40%。
+释放时同时给于自身周围敌对目标脆弱和灾祸效果。
+
+（警告：请勿用修改器使你的角色学会这个技能，这个技能的光环效果对全队使用后可能会变得非常卡顿。）
+
+Version 0.1 Update  
+Update: Firearms and Humanoid FN-TPS  
+ 
+FN-TPS features a skill requiring time-based evolution: *Supreme Popularity Ranking*  
+Skill Effects:  
+・Gains 20 Popularity, 100 Armor Penetration, and 30 Accuracy.  
+✦ At 20 Popularity: Grants all allies 20% Damage Boost  
+✦ At 50 Popularity: Reduces incoming damage by 10 for allied units  
+✦ At 100 Popularity: Boosts all allies' damage reduction by 40%  
+Upon activation, applies **Vulnerable** and **Calamity** effects to nearby hostile targets.  
+ 
+[Warning: Do not use trainers to acquire this skill. The aura effect may cause severe lag when applied to the entire team.]  
+
+バージョン0.1 アップデート  
+更新内容: FN-TPS銃器&amp;人形  
+ 
+FN-TPSのスキル「超人気ランキング」は時間経過で進化:  
+効果:  
+・自身に「人気値+20」「貫通力+100」「命中率+30」を付与  
+✦ 人気値20到達時: 味方全員の与ダメージ+20%  
+✦ 人気値50到達時: 味方ユニットの被ダメージ-10  
+✦ 人気値100到達時: 味方全員の被ダメージ軽減+40%  
+発動時、周囲の敵に「脆弱化」と「災厄」状態を付与  
+ 
+【警告】チートツールで本スキルを習得しないでください。オーラ効果による全体適用時に重い動作遅延が発生する可能性があります。 
+
+更新0.2版本
+
+添加核心物品：转换器
+功能：
+将水果和蔬菜转换为森林的馈赠
+将肉和鱼转换为荒野的馈赠
+将部分家具转化为城市的馈赠（窗，工作台，门等）
+将大部分武器转化为雪地的馈赠
+这四种材料将会成为本MOD的核心材料，枪械合成表大改
+
+
+
+</description>
+<tags>NPC,Weapon,Item,Girls Frontline</tags>
+</Meta>

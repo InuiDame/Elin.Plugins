@@ -1,7 +1,7 @@
 # BlackSouls Equipment MOD
 Mod Url ———— https://steamcommunity.com/sharedfiles/filedetails/?id=3367928649
 
-![img](https://github.com/InuiDame/Elin.Plugins/Blacksouls_Support_Dll\package\preview.jpg)
+![img](https://github.com/InuiDame/Elin.Plugins/blob/main/Blacksouls_Support_Dll/package/preview.jpg?raw=true)
 
 ## My archenemy, are you in this world?
 

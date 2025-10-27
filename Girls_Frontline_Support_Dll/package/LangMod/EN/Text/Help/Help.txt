@@ -1,0 +1,12 @@
+$First of all, this is not a changelog.
+
+Secondly, who exactly is writing this, and who is reading it.
+
+{topic|2025.6.4}
+
+Bug fixes, replaced workbench textures.
+
+$FAQ
+
+{Q|There was an error reported in the top right corner, saying something about CWL. Is it a CWL issue?}
+{A|CWL only handles error output functionality. During this period, CWL has not produced any errors. You should look for words other than CWL in the error message. For example, this mod often uses FN and GF as abbreviations, so if there is a problem, you will know immediately.}
