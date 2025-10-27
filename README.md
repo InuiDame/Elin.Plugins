@@ -24,8 +24,8 @@ The repository does not contain BepInEx-related libraries
 Please handle dependencies independently when modifying and compiling
 
 ## Build
-The projects require environment variable ElinGamePath set to the root folder of the Elin game installation.
-
+The environment variable `ElinGamePath` must be set to the root path of the Elin installation.
+```
 ElinGamePath/
 ├─ BepInEx/
 │  ├─ core/
@@ -33,8 +33,10 @@ ElinGamePath/
 ├─ Elin_Data/
 │  ├─ Managed/
 │  │  ├─ *.dll
-
-When using CWL as the using directive, this environment variable needs to be additionally configured.
+```
+When using `CWL` as the using directive, `SteamContentPath` environment variable needs to be additionally configured.
 
 SteamContentPath/
+```
 ├─ workshop/content
+```
