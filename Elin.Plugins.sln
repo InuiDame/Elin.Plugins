@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InuiBackAttack", "InuiBackA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalSlash", "MetalSlash\MetalSlash.csproj", "{7AEDEA1A-1927-477A-96E0-E0CF9F72911D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blacksouls_Support_Dll", "Blacksouls_Support_Dll\Blacksouls_Support_Dll.csproj", "{7D1D8C2C-3014-47F9-BA8D-0DF673C6E329}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7AEDEA1A-1927-477A-96E0-E0CF9F72911D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AEDEA1A-1927-477A-96E0-E0CF9F72911D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AEDEA1A-1927-477A-96E0-E0CF9F72911D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D1D8C2C-3014-47F9-BA8D-0DF673C6E329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D1D8C2C-3014-47F9-BA8D-0DF673C6E329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D1D8C2C-3014-47F9-BA8D-0DF673C6E329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D1D8C2C-3014-47F9-BA8D-0DF673C6E329}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

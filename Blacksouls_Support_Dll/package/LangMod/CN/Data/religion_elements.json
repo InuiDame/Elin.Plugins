@@ -1,0 +1,15 @@
+{
+    "cwl_bs_alice": [
+        "negateall",
+        "r_STR",
+        "r_END",
+        "r_DEX",
+		"r_PER",
+		"r_LER",
+		"r_WIL",
+		"r_MAG",
+		"r_CHA",
+		"r_life",
+		"absorbHP"
+    ]
+}

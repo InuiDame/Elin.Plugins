@@ -1,0 +1,75 @@
+{
+  "Owner": "redidol",
+  "Items": [
+    {
+      "Id": "BS_blacksoul1",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+      "Type": "Item"
+    },
+	{
+      "Id": "BS_bluesoul1",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+      "Type": "Item"
+    },
+	{
+      "Id": "BS_greensoul1",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+      "Type": "Item"
+    },
+	{
+      "Id": "BS_greysoul1",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+      "Type": "Item"
+    },
+	{
+      "Id": "BS_purplesoul1",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+      "Type": "Item"
+    },
+	{
+      "Id": "BS_redsoul1",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+      "Type": "Item"
+    },
+	{
+      "Id": "BS_whitesoul1",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+      "Type": "Item"
+    },
+	{
+      "Id": "BS_yellowsoul1",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+      "Type": "Item"
+    },
+	{
+      "Id": "spring2025gift",
+      "Material": "",
+      "Num": 1,
+      "Restock": false,
+      "Type": "Item"
+    },
+	{
+      "Id": "eg_sota",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+      "Type": "Item"
+    }
+  ]
+}
