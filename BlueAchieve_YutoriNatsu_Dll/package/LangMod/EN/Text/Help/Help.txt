@@ -1,0 +1,59 @@
+$MOD Introduction
+
+Younatsu is a character from the Azure Lane game, although my depiction might not be very accurate.
+{link|Visit the Wiki for information on this character|https://www.gamekee.com/ba/90626.html}
+
+The MOD adds 1 character, 1 gun, 1 workbench, 3 foods, and 3 furniture items.
+
+Currently, custom dialogues and other content have not been added to the character.
+
+$Younatsu Skill Introduction
+
+
+{topic|Treasure This Moment}
+
+Type: Healing Skill
+
+Effect: Heals the target and dispels their debuffs, then continues to heal the target.
+
+{topic|Eat This for a Boost}
+
+Type: Support Skill
+
+Effect: Increases the target's weapon damage by a percentage and adds a fixed amount to their magic enhancement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
+{image,natsu_icon}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

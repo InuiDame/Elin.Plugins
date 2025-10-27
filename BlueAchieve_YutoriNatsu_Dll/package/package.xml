@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meta>
+  <title>冒险者 柚鸟夏</title>
+  <id>BA_natsu</id>
+  <author>inui</author>
+  <loadPriority>100</loadPriority>
+  <version>0.23.104</version>
+  <description> 
+这是一个来着碧蓝档案的角色。
+
+MOD包含了1个工作台，3个摆放物，1把枪，和3个食物
+
+她会出生在初始区域
+
+目前没有为她增加特殊的对话和任务，也许以后会有。
+
+她能够释放一个清除debuff和治疗的技能，和一个增加伤害以及魔法伤害的技能。
+
+工作台被使用为情人节茶桌，该MOD的所有物品都在这个上面制作，而制作这个茶桌只需要手工制作一下。
+
+具体内容可以在MOD Help mod页面查阅。
+
+
+</description>
+<tags>NPC,Weapon,Item,BlueArchive</tags>
+</Meta>
