@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meta>
+  <title>装备制造继承修复</title>
+  <id>CraftEquipEncFix</id>
+  <author>inui</author>
+  <loadPriority>100</loadPriority>
+  <version>0.23.152</version>
+  <description> 
+
+这个MOD修复了多把武器融合而无法融合附魔的问题，同时通过使用tag限制来进行精准控制。
+
+如果你看了第一段文字后还是不了解这个MOD的作用，可以看图片，图片1和图片2中的短剑合成了图片3中的测试武器，而他们的附魔相加了。
+
+MOD根目录拥有一个进行测试的武器，该武器可以在铁砧处合成。
+
+使用方法：为合成的目标物品添加tag：Inui_CCEF
+
+这个MOD可以作为任何武器类MOD的前置库，无需向我告知。
+
+
+</description>
+<tags>Weapon,QoL,Utility</tags>
+</Meta>
