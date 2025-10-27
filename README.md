@@ -23,7 +23,7 @@ The repository does not contain BepInEx-related libraries
 
 Please handle dependencies independently when modifying and compiling
 
-##Build
+## Build
 The projects require environment variable ElinGamePath set to the root folder of the Elin game installation.
 
 ElinGamePath/
