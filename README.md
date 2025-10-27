@@ -1,6 +1,12 @@
 # Elin.Plugins
 This is a Mod For Elin ———— https://store.steampowered.com/app/2135150/Elin/
 
+### 你可以在MOD的说明文件中找到现有的Steam创意工坊链接，我会优先在创意工坊上更新最新版本。
+
+### You can find the current Steam Workshop link for the MOD in the readme file. I will prioritize updating the latest version on the Workshop.
+
+### MODのreadmeファイルに現在のSteam Workshopリンクが記載されています。最新版は優先的にWorkshopで更新します。
+
 ## Important Notes
 
 Please be aware that mods may suddenly stop working or potentially cause serious issues
