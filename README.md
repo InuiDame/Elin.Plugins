@@ -36,7 +36,7 @@ ElinGamePath/
 ```
 When using `CWL` as the using directive, `SteamContentPath` environment variable needs to be additionally configured.
 
-SteamContentPath/
 ```
+SteamContentPath/
 ├─ workshop/content
 ```
