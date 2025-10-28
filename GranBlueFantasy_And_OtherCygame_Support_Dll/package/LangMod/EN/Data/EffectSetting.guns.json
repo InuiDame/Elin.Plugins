@@ -1,0 +1,14 @@
+{
+    "GBF_Luminiera_Bolt": {
+        "Num": 3,
+        "Delay": 0.1,
+        "IdEffect": "gunfire",
+        "IdSound": "attack_gun_shotgun",
+        "SpriteId": "ranged_gun",
+        "Eject": true,
+        "FirePos": {
+            "x": 23,
+            "y": 23
+        }
+    }
+}

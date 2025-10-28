@@ -6,7 +6,7 @@
         <LangVersion>preview</LangVersion>
         <Nullable>enable</Nullable>
         <RootNamespace>Blacksouls_Support_Dll</RootNamespace>
-        <AssemblyName>Blacksouls_Support_Dll</AssemblyName>
+        <AssemblyName>Blacksouls_Support</AssemblyName>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>$(ElinGamePath)\Package\Mod_$(AssemblyName)\</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>

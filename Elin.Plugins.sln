@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Girls_Frontline_Support_Dll
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueAchieve_YutoriNatsu_Dll", "BlueAchieve_YutoriNatsu_Dll\BlueAchieve_YutoriNatsu_Dll.csproj", "{C3684203-0C9E-4CC3-AE41-FD6BD66C1E2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GranBlueFantasy_And_OtherCygame_Support_Dll", "GranBlueFantasy_And_OtherCygame_Support_Dll\GranBlueFantasy_And_OtherCygame_Support_Dll.csproj", "{4FD5B824-66D3-4680-AC72-B0E7B31A0C95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{C3684203-0C9E-4CC3-AE41-FD6BD66C1E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3684203-0C9E-4CC3-AE41-FD6BD66C1E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3684203-0C9E-4CC3-AE41-FD6BD66C1E2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD5B824-66D3-4680-AC72-B0E7B31A0C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD5B824-66D3-4680-AC72-B0E7B31A0C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD5B824-66D3-4680-AC72-B0E7B31A0C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD5B824-66D3-4680-AC72-B0E7B31A0C95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

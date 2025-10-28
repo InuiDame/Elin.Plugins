@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meta>
+  <title>GBF 和 PCR 装备/Equipment MOD(CN/JP/EN)</title>
+  <id>GBF_and_PCR_Equipment</id>
+  <author>inui</author>
+  <loadPriority>100</loadPriority>
+  <version>0.23.140</version>
+  <description>
+  
+  本MOD将会拥有的内容：
+  GBF中的道具
+  GBF中的装备
+  GBF中的角色
+  GBF中的敌方目标
+  
+  如何使用本MOD：
+  简易制作中可以制作MOD工作台，在工作台中可制作本MOD的道具。
+  
+  0.1 版本内容：
+  从BSmod中独立出的虎神将，蛇神将，凯露，补全角色的娜尔梅亚[风]。
+  
+  The content that this MOD will have:
+Props in GBF
+Equipment in GBF
+Characters in GBF
+Enemy targets in GBF
+  
+How to use this MOD:
+In simple production, a MOD workbench can be created, where props for this MOD can be made.
+  
+Version 0.1 Content:
+The Tiger God General, Snake God General, Kailu, and Narmia [Wind] who are independent from BSmod, complete the character.
+
+本MODが所有するコンテンツ：
+GBFのアイテム
+GBFにおける装備
+GBFの役割
+GBF中の敵ターゲット
+  
+本MODの使用方法：
+簡易制作ではMODテーブルを作成することができ、テーブルでは本MODの道具を作成することができます。
+  
+バージョン0.1の内容：
+BSmodから独立した虎神将、蛇神将、カイル、キャラクターを補完するナルミヤ[風]。
+  
+  0.13版本更新
+  更新Boss/修瓦利耶·玛格纳
+  可使用星晶浮游体进行召唤挑战
+  击败后低概率掉落光属性玛格纳系列武器和修瓦利耶碎片
+  碎片可以直接制作玛格纳系列武器
+  玛格纳系列武器可镶嵌多个卢恩符文
+  
+  Version 0.13 Update  
+- New Boss: Luminiera Omega  
+- Can be summoned via Primal Bit for challenge  
+- Low drop rate for Light-element Omega Series Weapons and Chevalier Fragments upon defeat  
+- Fragments can be directly used to craft Omega Series Weapons  
+- Omega Series Weapons support multiple Rune Sigil slots  
+
+バージョン0.13 アップデート  
+- 新規ボス「シュヴァリエ・マグナ」追加  
+- 星晶浮遊体を使用して召喚可能  
+- 撃破時に光属性マグナ武器シリーズとシュヴァリエの欠片が低確率でドロップ  
+- 欠片からマグナ武器シリーズを直接製作可能  
+- マグナ武器は複数のルーンシギルスロットを装備可能  
+
+0.15版本更新
+新角色
+卡莉奥斯特萝克拉莉丝
+通过在制作台中制作乌洛波洛斯·莫比乌斯后获得
+拥有能驱散敌方buff和我方debuff的能力
+能够释放大量HP恢复后并持续恢复作用的能力
+能够使自身暴击伤害提高，自动复活，无敌的能力
+角色自带1层多重咏唱效果
+
+  
+</description>
+<tags>NPC,Weapon,Race,Skill,Item,gbf,Granblue Fantasy,PCR,Princess Connect! Re:Dive</tags>
+</Meta>
