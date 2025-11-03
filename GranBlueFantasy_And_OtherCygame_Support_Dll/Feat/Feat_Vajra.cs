@@ -36,6 +36,21 @@ namespace GBF.feat.Feat_Vajra
             return SpriteSheet.Get(source.alias);  // 获取专长图标 / Get feat icon / 特技アイコンを取得
         }
     }
+    
+    internal class featVajra3 : Feat
+    //水边的斗神 / 浜辺の闘神 / Beachfront War Deity
+    {
+        internal void _OnApply(int add, ElementContainer eleOwner, bool hint)
+        {
+            owner.ModBase(67, add * 30); 
+            owner.ModBase(411, add * 30); 
+            // 修改属性，设置潜力，应用效果等 / Modify attributes, set potential, apply effects, etc. / 属性を修正、潜在力を設定、効果を適用など
+        }
+        public override Sprite GetIcon(string suffix = "")
+        {
+            return SpriteSheet.Get(source.alias);  // 获取专长图标 / Get feat icon / 特技アイコンを取得
+        }
+    }
 
     //免疫DEbuff / Immune to Debuffs / デバフ免疫
     [HarmonyPatch(typeof(Chara))]
@@ -45,7 +60,8 @@ namespace GBF.feat.Feat_Vajra
         private static readonly HashSet<int> ImmuneElements = new()  // 免疫元素ID集合 / Immune element ID collection / 免疫エレメントIDコレクション
     {
         170031, // 原本的免疫元素 / Original immune element / 元の免疫エレメント
-        170038
+        170038,
+        170044
         // 继续往这里添加新的元素ID即可 / Continue adding new element IDs here / ここに新しいエレメントIDを追加し続ける
     };
         public static bool Prefix(Chara __instance, Condition c, bool force, ref Condition __result)

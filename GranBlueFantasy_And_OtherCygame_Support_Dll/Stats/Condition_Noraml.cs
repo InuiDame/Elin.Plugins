@@ -196,4 +196,28 @@ namespace Condition_Noraml
         public override int GetPhase() => 0;
     }
     
+    public class ConSK1786 : Timebuff
+    //戌遊戌予
+    //Work Hard, Play Harder
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConSK1787 : Timebuff
+    //犬心一意
+    //Hounding Focus
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConGBFDark2 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConGBFWater2 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
 }

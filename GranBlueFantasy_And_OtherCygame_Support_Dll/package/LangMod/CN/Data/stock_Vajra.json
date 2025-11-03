@@ -1,0 +1,77 @@
+{
+  "Owner": "Vajra",
+  "Items": [
+    {
+      "Id": "GBFchest_Wooden",
+      "Material": "",
+      "Num": 10,
+      "Restock": true,
+	  "Rarity": "Normal",
+      "Type": "Item",
+      "Identified": true
+    },
+	{
+      "Id": "GBF_EleventhTreat2",
+      "Material": "",
+      "Num": 1,
+      "Restock": false,
+	  "Rarity": "Normal",
+      "Type": "Item",
+      "Identified": true
+    },
+    {
+      "Id": "GBF_SK_0533",
+      "Num": 1,
+	  "Restock": false,
+      "Type": "Spell"
+    },
+	{
+      "Id": "hand_Cold",
+      "Num": 3,
+	  "Restock": true,
+      "Type": "Spell"
+    },
+	{
+      "Id": "arrow_Cold",
+      "Num": 3,
+	  "Restock": true,
+      "Type": "Spell"
+    },
+	{
+      "Id": "bolt_Cold",
+      "Num": 3,
+	  "Restock": true,
+      "Type": "Spell"
+    },
+	{
+      "Id": "ball_Cold",
+      "Num": 3,
+	  "Restock": true,
+      "Type": "Spell"
+    },
+	{
+      "Id": "funnel_Cold",
+      "Num": 3,
+	  "Restock": true,
+      "Type": "Spell"
+    },
+	{
+      "Id": "weapon_Cold",
+      "Num": 3,
+	  "Restock": true,
+      "Type": "Spell"
+    },
+	{
+      "Id": "sword_Cold",
+      "Num": 3,
+	  "Restock": true,
+      "Type": "Spell"
+    },
+	{
+      "Id": "flare_Cold",
+      "Num": 3,
+	  "Restock": true,
+      "Type": "Spell"
+    }
+  ]
+}

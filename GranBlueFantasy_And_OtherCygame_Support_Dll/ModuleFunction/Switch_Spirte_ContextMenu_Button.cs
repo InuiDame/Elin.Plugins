@@ -42,10 +42,16 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
             AddCharacterAction("Vajra", 170032, 100, false);
             AddCharacterAction("Vajra", 170033, 100, false);
             AddCharacterAction("Vajra", 170034, 100, false);
-            AddCharacterFeat("Vajra", 170031);
+            AddCharacterAction("Vajra", 170040, 100, false);
             RemoveCharacterAction("Vajra", 170035);
             RemoveCharacterAction("Vajra", 170036);
             RemoveCharacterAction("Vajra", 170037);
+            RemoveCharacterAction("Vajra", 170041);
+            RemoveCharacterAction("Vajra", 170042);
+            RemoveCharacterAction("Vajra", 170043);
+            AddCharacterFeat("Vajra", 170031);
+            RemoveCharacterFeat("Vajra", 170038);
+            RemoveCharacterFeat("Vajra", 170044);
 
         }
 
@@ -54,14 +60,19 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
         {
 
             ChangeCharacterSprite("Vajra", "Vajra2", "Vajra2");
-            AddCharacterAction("Vajra", 321, 50, false);
+            AddCharacterAction("Vajra", 170041, 100, false);
+            AddCharacterAction("Vajra", 170042, 100, false);
+            AddCharacterAction("Vajra", 170043, 100, false);
             RemoveCharacterAction("Vajra", 170032);
             RemoveCharacterAction("Vajra", 170033);
             RemoveCharacterAction("Vajra", 170034);
             RemoveCharacterAction("Vajra", 170035);
             RemoveCharacterAction("Vajra", 170036);
             RemoveCharacterAction("Vajra", 170037);
+            RemoveCharacterAction("Vajra", 170040);
+            AddCharacterFeat("Vajra", 170044);
             RemoveCharacterFeat("Vajra", 170031);
+            RemoveCharacterFeat("Vajra", 170038);
         }
 
         [CwlContextMenu("gbf_ui_Vajra_spring")]
@@ -89,7 +100,13 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
             RemoveCharacterAction("Vajra", 170032);
             RemoveCharacterAction("Vajra", 170033);
             RemoveCharacterAction("Vajra", 170034);
+            RemoveCharacterAction("Vajra", 170040);
+            RemoveCharacterAction("Vajra", 170041);
+            RemoveCharacterAction("Vajra", 170042);
+            RemoveCharacterAction("Vajra", 170043);
+            AddCharacterFeat("Vajra", 170038);
             RemoveCharacterFeat("Vajra", 170031);
+            RemoveCharacterFeat("Vajra", 170044);
         }
 
         private static bool ChangeCharacterSprite(string charaId, string spriteKey, string portraitId)
