@@ -86,6 +86,18 @@ namespace Patch_Shield_Condition
                         dmg -= shield.value;  // 减少伤害值 / Reduce damage value / ダメージ値を減少
                         shield.Kill();        // 移除护盾效果 / Remove shield effect / シールド効果を削除
                     }
+                    if (targetChar.HasCondition<ConPCRLunchtime>())
+                    {
+                        ConPCRLunchtime shield = targetChar.GetCondition<ConPCRLunchtime>();
+                        if (shield.value >= dmg)
+                        {
+                            int num2 = (int)dmg;
+                            shield.Mod(-1 * num2); 
+                            return false;         
+                        }
+                        dmg -= shield.value; 
+                        shield.Kill();       
+                    }
                 }
             }
             return true;  // 继续执行原伤害方法 / Continue with original damage method / 元のダメージメソッドを継続実行

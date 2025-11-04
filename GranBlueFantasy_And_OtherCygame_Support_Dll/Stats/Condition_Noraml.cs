@@ -220,4 +220,39 @@ namespace Condition_Noraml
         public override int GetPhase() => 0;
     }
     
+    public class ConGBFLight5 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConGBFLight6 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConPCR_SpeedUp : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConSnow_Boots : Timebuff
+    {
+        public override bool CanStack(Condition c)
+        {
+            return c.GetType() == GetType();
+        }
+        public override void OnStacked(int p)
+        {
+            if (p > base.value)
+            {
+                base.value = p;  
+            }
+            SetPhase(); 
+        }
+    }
+    
+    public class ConSnow_Boots2 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
 }

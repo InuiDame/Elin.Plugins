@@ -80,4 +80,68 @@ namespace Condition_Pupper_Squad_Go
             }
         }
     }
+    
+    public class ConPCRLunchtime : BaseBuff
+    {
+        private Dice? healDice;
+        private bool diceInitialized; 
+        public override bool WillOverride => false;  
+        
+        private void InitDice()
+        {
+            if (diceInitialized) return;
+            int num = Mathf.Max(EClass.curve(owner.END * 10, 400, 100), 100);
+            healDice = Dice.Create("SpHealEris", num);
+            owner.HealHPHost(healDice.Roll(), HealSource.Magic);
+
+            diceInitialized = true;
+        }
+        public int GetGuardAmount()
+        {
+            return owner.hp;
+        }
+    
+        public override void OnStartOrStack()
+        {
+            InitDice();
+            base.value = GetGuardAmount();  
+            base.OnStartOrStack();  
+        }
+    
+        public override void Tick()
+        {
+            if (base.value <= 0)
+            {
+                Kill();  
+            }
+        }
+        
+        public void Addguard(int amount)
+        {
+            base.value += amount;  
+            OnValueChanged();  
+        }
+    
+        public override bool CanStack(Condition c)
+        {
+            return c.GetType() == GetType();
+        }
+    
+        public override void OnStacked(int p)
+        {
+            if (p > base.value)
+            {
+                base.value = p;  
+            }
+            SetPhase(); 
+        }
+    
+        public override void OnWriteNote(List<string> list)
+        {
+            if (base.value > 0)
+            {
+                list.Add($"<color=#87CEEB>当前护盾/Shiled: {base.value}</color>");
+            }
+        }
+    }
 }

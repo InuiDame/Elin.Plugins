@@ -97,7 +97,7 @@ namespace GBF.spell.Spell_Sword_AOE
         EClass.Wait(0.8f, Act.CC.Chara);  // 等待0.8秒 / Wait 0.8 seconds / 0.8秒待機
         ActEffect.TryDelay(() =>
         {
-            Act.CC.Chara.PlaySound("spell_ball", 1f, true);  // 播放球状法术音效 / Play ball spell sound effect / 球状スペル音声効果を再生
+            Act.CC.Chara.PlaySound("spell_hand", 1f, true);  // 播放法术音效 / Play hand spell sound effect / スペル音声効果を再生
         });
         
         // 动态特效处理 / Dynamic effect processing / 動的エフェクト処理
