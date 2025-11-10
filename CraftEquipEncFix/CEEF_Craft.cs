@@ -41,7 +41,7 @@ namespace CEEF_Craft
                     int val = e.Value;
 
                     
-                    if (val == 0) continue;
+                    if (val == 0 || e.id == 64 || e.id == 65|| e.id == 66 || e.id == 67) continue;
 
                     product.elements.ModBase(e.id, val);
                 }

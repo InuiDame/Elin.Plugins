@@ -36,9 +36,8 @@
             <HintPath Condition="Exists('$(ElinGamePath)\Package\Mod_CustomWhateverLoader')">$(ElinGamePath)\Package\Mod_CustomWhateverLoader\CustomWhateverLoader.dll</HintPath>
             <Private>false</Private>
         </Reference>
-        <Reference Include="YKFramework">
-            <HintPath Condition="Exists('$(ElinGamePath)\2135150\3400020753')">$(ElinGamePath)\2135150\3400020753\YKFramework.dll</HintPath>
-            <HintPath Condition="Exists('$(SteamContentPath)\2135150\3400020753')">$(SteamContentPath)\2135150\3400020753\YKFramework.dll</HintPath>
+		 <Reference Include="AnimatedCustomSprites">
+            <HintPath Condition="Exists('$(SteamContentPath)\2135150\3382563342')">$(SteamContentPath)\2135150\3382563342\AnimatedCustomSprites.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="$(ElinGamePath)\Elin_Data\Managed\System.Net.Http.dll">

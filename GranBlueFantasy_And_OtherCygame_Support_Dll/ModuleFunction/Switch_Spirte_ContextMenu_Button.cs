@@ -11,6 +11,8 @@ using GBF.ModuleFunction.CharaPortrait;
 using HarmonyLib;
 using UnityEngine;
 using System.IO;
+using ACS.API;
+using ACS.Components;
 
 namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
 {
@@ -25,20 +27,20 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
         [CwlContextMenu("gbf_ui_cidala_combine")]
         private static void SwitchToCidala2()
         {
-            ChangeCharacterSprite("Cidala", "Cidala2", "Cidala_Style");
+            ChangeCharacterSprite("Cidala", "skin2", "Cidala_Style");
         }
 
         [CwlContextMenu("gbf_ui_cidala_twin")]
         private static void SwitchToCidala1()
         {
-            ChangeCharacterSprite("Cidala", "Cidala", "Cidala");
+            ChangeCharacterSprite("Cidala", "skin1", "Cidala");
         }
 
         [CwlContextMenu("gbf_ui_Vajra_normal")]
         private static void SwitchToVajra1()
         {
 
-            ChangeCharacterSprite("Vajra", "Vajra", "Vajra");
+            ChangeCharacterSprite("Vajra", "skin1", "Vajra");
             AddCharacterAction("Vajra", 170032, 100, false);
             AddCharacterAction("Vajra", 170033, 100, false);
             AddCharacterAction("Vajra", 170034, 100, false);
@@ -59,7 +61,7 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
         private static void SwitchToVajra2()
         {
 
-            ChangeCharacterSprite("Vajra", "Vajra2", "Vajra2");
+            ChangeCharacterSprite("Vajra", "skin2", "Vajra2");
             AddCharacterAction("Vajra", 170041, 100, false);
             AddCharacterAction("Vajra", 170042, 100, false);
             AddCharacterAction("Vajra", 170043, 100, false);
@@ -79,21 +81,21 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
         private static void SwitchToVajra3()
         {
 
-            ChangeCharacterSprite("Vajra", "Vajra3", "Vajra3");
+            ChangeCharacterSprite("Vajra", "skin3", "Vajra3");
 
         }
         [CwlContextMenu("gbf_ui_Vajra_newyear")]
         private static void SwitchToVajra4()
         {
 
-            ChangeCharacterSprite("Vajra", "Vajra4", "Vajra4");
+            ChangeCharacterSprite("Vajra", "skin4", "Vajra4");
 
         }
         [CwlContextMenu("gbf_ui_Vajra_halloween")]
         private static void SwitchToVajra5()
         {
 
-            ChangeCharacterSprite("Vajra", "Vajra5", "Vajra5");
+            ChangeCharacterSprite("Vajra", "skin5", "Vajra5");
             AddCharacterAction("Vajra", 170035, 100, false);
             AddCharacterAction("Vajra", 170036, 100, false);
             AddCharacterAction("Vajra", 170037, 100, false);
@@ -109,47 +111,30 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
             RemoveCharacterFeat("Vajra", 170044);
         }
 
-        private static bool ChangeCharacterSprite(string charaId, string spriteKey, string portraitId)
+        private static bool ChangeCharacterSprite(string charaId, string skin, string portraitId)
         {
-            // 获取当前地图实例 / Get current map instance / 現在のマップインスタンスを取得
+            // 获取当前地图实例
             var map = EClass._map;
             if (map == null)
             {
-                return false; // 地图不存在返回失败 / Map doesn't exist, return failure / マップが存在しない場合失敗を返す
+                return false;
             }
 
-            // 根据角色ID查找角色 / Find character by character ID / キャラIDでキャラクターを検索
+            // 根据角色ID查找角色
             if (map.charas.FirstOrDefault(c => c.id == charaId) is not { } chara)
             {
-                UnityEngine.Debug.LogWarning($"未找到角色: {charaId}"); // 角色未找到警告 / Character not found warning / キャラクター未検出警告
+                UnityEngine.Debug.LogWarning($"未找到角色: {charaId}");
                 return false;
             }
+    
+            // 使用ACS动画系统播放静态剪辑
+            chara.StartAcsClip(skin);
 
-            // 从Sprite替换器加载新精灵图 / Load new sprite from Sprite replacer / スプライト置換器から新しいスプライトをロード
-            var newSprite = SpriteReplacer.dictModItems[spriteKey].LoadSprite();
-            if (newSprite == null)
-            {
-                UnityEngine.Debug.LogWarning($"未找到Sprite: {spriteKey}"); // Sprite未找到警告 / Sprite not found warning / スプライト未検出警告
-                return false;
-            }
-
-            // 检查角色渲染器是否有效 / Check if character renderer is valid / キャラクターレンダラーが有効か確認
-            if (chara.renderer?.actor?.sr == null)
-            {
-                UnityEngine.Debug.LogWarning($"角色 {charaId} 的渲染器为空"); // 渲染器为空警告 / Renderer is null warning / レンダラーがnullの警告
-                return false;
-            }
-
-            // 更新角色精灵图和材质 / Update character sprite and material / キャラクタースプライトとマテリアルを更新
-            var actor = chara.renderer.actor;
-            actor.sr.sprite = newSprite;                       // 设置新精灵图 / Set new sprite / 新しいスプライトを設定
-            actor.mpb.SetTexture(_mainTex, newSprite.texture); // 更新主纹理 / Update main texture / メインテクスチャを更新
-
-            // 更新角色肖像ID / Update character portrait ID / キャラクターポートレートIDを更新
+            // 更新角色肖像ID
             chara.c_idPortrait = portraitId;
 
-            UnityEngine.Debug.Log($"已切换角色 {charaId} 的皮肤为: {spriteKey}"); // 切换成功日志 / Switch success log / 切り替え成功ログ
-            return true;                                                 // 返回成功 / Return success / 成功を返す
+            UnityEngine.Debug.Log($"已切换角色 {charaId} 的皮肤为: {skin} (使用ACS静态模式)");
+            return true;                                       // 返回成功 / Return success / 成功を返す
         }
 
 
