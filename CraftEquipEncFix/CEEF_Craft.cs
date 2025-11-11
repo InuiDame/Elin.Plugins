@@ -16,10 +16,40 @@ namespace CEEF_Craft
         public static bool Prefix(Card product, List<Thing> ings, CraftUtil.MixType type, int maxQuality, Chara crafter, ref Card __result)
         {
             Thing thingProduct = product as Thing;
-            if (thingProduct == null || thingProduct.source == null || thingProduct.source.tag == null || !thingProduct.source.tag.Contains("Inui_CCEF"))
+            if (thingProduct == null || thingProduct.source == null || thingProduct.source.tag == null)
             {
                 return true; 
             }
+            
+            // 检查是否包含 Inui_CCEF tag（大小写不敏感）
+            bool hasInuiCCEF = thingProduct.source.tag.Any(tag => 
+                tag.Equals("Inui_CCEF", StringComparison.OrdinalIgnoreCase));
+            if (!hasInuiCCEF)
+            {
+                return true;
+            }
+            
+            // 检查是否同时存在 allowop tag（大小写不敏感）
+            bool allowOpElements = thingProduct.source.tag.Any(tag => 
+                tag.Equals("allowop", StringComparison.OrdinalIgnoreCase));
+            
+            // 解析附魔百分比标签
+            List<float> enchantPercents = new List<float>();
+
+            foreach (var tag in thingProduct.source.tag)
+            {
+                if (tag == null) continue;
+    
+                if (tag.StartsWith("percentenchant\\", StringComparison.OrdinalIgnoreCase))
+                {
+                    string percentStr = tag.Substring("percentenchant\\".Length);
+                    if (float.TryParse(percentStr, out float percent))
+                    {
+                        enchantPercents.Add(percent);
+                    }
+                }
+            }
+            
 
             bool isFood = type == CraftUtil.MixType.Food;
             int nutFactor = 100 - (ings.Count - 1) * 5;
@@ -29,11 +59,32 @@ namespace CEEF_Craft
 
             int totalWeight = 0;
             int totalPrice = 0;
-
-            foreach (Thing ing in ings)
+            
+            // 记录每个素材的原始附魔
+            for (int i = 0; i < ings.Count; i++)
             {
+                if (ings[i] != null)
+                {
+                    foreach (var kv in ings[i].elements.dict)
+                    {
+                        if (kv.Value.Value != 0)
+                        {
+                            
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < ings.Count; i++)
+            {
+                Thing ing = ings[i];
                 if (ing == null) continue;
 
+                float enchantPercent = 100f; // 默认100%
+                if (i < enchantPercents.Count)
+                {
+                    enchantPercent = enchantPercents[i]; // 按顺序取百分比
+                }
                 
                 foreach (var kv in ing.elements.dict)
                 {
@@ -41,9 +92,24 @@ namespace CEEF_Craft
                     int val = e.Value;
 
                     
-                    if (val == 0 || e.id == 64 || e.id == 65|| e.id == 66 || e.id == 67) continue;
+                    if (val == 0) continue;
+                    
+                    // 应用附魔百分比
+                    int adjustedVal = (int)(val * enchantPercent / 100f);
+                    if (adjustedVal <= 0) continue;
 
-                    product.elements.ModBase(e.id, val);
+                    if (allowOpElements)
+                    {
+                        product.elements.ModBase(e.id, adjustedVal);
+                    }
+                    else
+                    {
+                        if (val == 64 || val == 65 || val == 66 || val == 67)
+                        {
+                            continue;
+                        }
+                        product.elements.ModBase(e.id, adjustedVal);
+                    }
                 }
 
                 if (isFood)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BepInEx;
 using HarmonyLib;
+using UnityEngine;
 
 namespace CEEF_info
 {
@@ -16,6 +17,11 @@ namespace CEEF_info
         {
             new Harmony("CraftEquipEncFix").PatchAll();
             base.Logger.LogInfo("附魔修复已经激活");
+
         }
     }
+
+
+
 }
+
