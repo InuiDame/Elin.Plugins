@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magic_Resistance_Penetratio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Icanseeanybody", "Icanseeanybody\Icanseeanybody.csproj", "{786AAB51-97C1-4322-8F9F-B64BB05ADB22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraSpell", "ExtraSpell\ExtraSpell.csproj", "{EC262C28-DEB3-438D-B477-14B55FAD375F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonsterInvasionMod", "MonsterInvasionMod\MonsterInvasionMod.csproj", "{5C9096B5-C4A2-4793-9412-66E8B366CC93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{786AAB51-97C1-4322-8F9F-B64BB05ADB22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{786AAB51-97C1-4322-8F9F-B64BB05ADB22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{786AAB51-97C1-4322-8F9F-B64BB05ADB22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC262C28-DEB3-438D-B477-14B55FAD375F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC262C28-DEB3-438D-B477-14B55FAD375F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC262C28-DEB3-438D-B477-14B55FAD375F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC262C28-DEB3-438D-B477-14B55FAD375F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9096B5-C4A2-4793-9412-66E8B366CC93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C9096B5-C4A2-4793-9412-66E8B366CC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C9096B5-C4A2-4793-9412-66E8B366CC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C9096B5-C4A2-4793-9412-66E8B366CC93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

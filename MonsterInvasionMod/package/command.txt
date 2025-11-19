@@ -1,0 +1,9 @@
+invasion.Trigger [int] 立刻在当前城镇或领地刷一波入侵
+
+invasion.SetCooldown [int] 设置入侵冷却
+
+invasion.SetChance [0-100] 每天第一次进图时有多少概率刷入侵
+
+invasion.ClearCooldown 无参数，清空入侵冷却
+
+invasion.Status 查看当前Zone属不属于城镇，能不能造成入侵，冷却和概率是多少
