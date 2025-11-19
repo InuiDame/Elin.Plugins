@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meta>
+<title>额外魔法</title>
+<id>ExtraSpell</id>
+<author>Shiomi</author>
+<loadPriority>90</loadPriority>
+<version>0.23.213</version>
+<tag>skill,CWL</tag>
+</Meta>
