@@ -149,7 +149,8 @@ namespace MonsterInvasionMod
             task = new QuestTaskMonsterInvasion();
             task.SetCount(invaderUIDs.Count);
 
-            quest = Quest.Create("custom_monsterInvasion");
+            quest = new QuestMonsterInvasion();
+            quest.id = "custom_monsterInvasion";
             quest.SetTask(task);
             quest.SetClient(EClass.pc); // 让玩家成为委托人
             quest.Start();              // 开始计时/刷新日志
@@ -167,6 +168,7 @@ namespace MonsterInvasionMod
 
         public override void OnTickRound()
         {
+            if (shouldKill) return;
             if (zone?.map == null) return;
             // 更新存活列表
             invaderUIDs.RemoveAll(uid =>
@@ -277,6 +279,12 @@ namespace MonsterInvasionMod
 
         public override void OnKill()
         {
+            // 确保任务被清理
+            if (quest != null)
+            {
+                EClass.game.quests.globalList.Remove(quest);
+                quest = null;
+            }
             invaderUIDs.Clear();
         }
 
@@ -287,6 +295,44 @@ namespace MonsterInvasionMod
                 Chara c = zone.map.charas.Find(ch => ch.uid == uid);
                 return c == null || c.isDead;
             });
+        }
+        
+        private bool shouldKill = false;
+        public override void OnLeaveZone()
+        {
+            // 清理任务
+            if (quest != null)
+            {
+                EClass.game.quests.globalList.Remove(quest);
+                if (quest.chara != null && quest.chara.quest == quest)
+                {
+                    quest.chara.quest = null;
+                }
+                quest = null;
+            }
+        
+            // 清理怪物
+            while (invaderUIDs.Count > 0)
+            {
+                int uid = invaderUIDs[0];
+                Chara mob = zone?.map?.charas.Find(ch => ch.uid == uid);
+                if (mob != null && !mob.isDead)
+                {
+                    mob.Die(null, null, AttackSource.None, null);
+                }
+                invaderUIDs.RemoveAt(0);
+            }
+        
+            shouldKill = true;
+        }
+        
+        public override void OnTick()
+        {
+            if (shouldKill)
+            {
+                shouldKill = false;
+                Kill();
+            }
         }
     }
 
@@ -423,6 +469,20 @@ static class SourceManager_Init_Patch
             => killed >= total;
     }
     
+    public class QuestMonsterInvasion : Quest
+    {
+        public override bool IsVisibleOnQuestBoard()
+        {
+            return false; // 永远不在委托栏显示
+        }
+    
+        public override bool TrackOnStart => false; // 不自动追踪
+    
+        public override bool CanAbandon => true; // 允许放弃
+        
+        
+    }
+    
     [HarmonyPatch]
     public static class KarmaPatch
     {
@@ -443,6 +503,21 @@ static class SourceManager_Init_Patch
             }
 
             return true; // 正常扣
+        }
+    }
+    // Harmony补丁：玩家离开地图时触发清理
+    [HarmonyPatch(typeof(Zone), "OnLeave")]
+    static class Zone_OnLeave_Patch
+    {
+        static void Postfix(Zone __instance)
+        {
+            // 查找并清理所有入侵事件
+            var invasions = __instance.events.list.OfType<ZoneEventMonsterInvasion>().ToList();
+            foreach (var invasion in invasions)
+            {
+                MonsterInvasionMod.Log($"玩家离开区域 {__instance.uid}，清理入侵事件");
+                invasion.OnLeaveZone();
+            }
         }
     }
 }
