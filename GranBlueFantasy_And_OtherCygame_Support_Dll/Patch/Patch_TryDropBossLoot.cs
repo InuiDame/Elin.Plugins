@@ -35,7 +35,7 @@ internal static class TryDropBossLoot_Patch
                 EMono._zone.AddCard(phase2Boss, point);  // 添加到区域 / Add to zone / ゾーンに追加
                 
                 // 基于END属性计算效果强度 / Calculate effect strength based on END attribute / END属性に基づいて効果強度を計算
-                int p = Mathf.Max(EClass.curve(__instance.END * 10, 400, 100, 75), 100);
+                int p = Mathf.Max(EClass.curve(__instance.END * 11, 400, 100, 75), 100);
                 
                 // 添加英雄状态 / Add hero condition / 英雄状態を追加
                 phase2Boss.AddCondition<ConHero>(p, false);

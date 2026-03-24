@@ -237,6 +237,9 @@ namespace Limitbreak
                 return;
             }
             int num = GBF_and_PCR_Equipment.elementRarity1.Value;
+            
+            num = Mathf.Max(1, num);
+            
             if (num < 1)
             {
                 num = 200;

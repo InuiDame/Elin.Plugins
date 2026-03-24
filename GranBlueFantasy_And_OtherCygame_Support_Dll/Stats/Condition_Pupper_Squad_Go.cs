@@ -21,7 +21,6 @@ namespace Condition_Pupper_Squad_Go
 {
     public class ConSK1374 : BaseBuff
     {
-        public override bool WillOverride => false;  // 不覆盖其他效果 / Does not override other effects / 他の効果を上書きしない
     
         private const int FixedguardValue = 4000;  // 固定护盾值 / Fixed shield value / 固定シールド値
     
@@ -85,7 +84,6 @@ namespace Condition_Pupper_Squad_Go
     {
         private Dice? healDice;
         private bool diceInitialized; 
-        public override bool WillOverride => false;  
         
         private void InitDice()
         {

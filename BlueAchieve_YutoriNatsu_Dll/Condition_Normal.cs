@@ -46,7 +46,7 @@ public class Connatsu_sk1 : Timebuff
         if (diceInitialized) return;
         
         // 1) 计算一次性疗伤骰 / Calculate one-time heal dice / 一回性治療ダイスを計算
-        int num = Mathf.Max(EClass.curve(owner.DEX * 10, 400, 100), 100);
+        int num = Mathf.Max(EClass.curve(owner.DEX * 11, 400, 100), 100);
         healDice = Dice.Create("SpHealEris", num);
         
         // 2) HOT持续恢复骰 / HOT continuous recovery dice / HOT持続回復ダイス

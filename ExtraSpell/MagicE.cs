@@ -49,30 +49,57 @@ internal class LightningSpell : Spell //魔法: 雷击
     private static void ProcAt_Internal(int power, SourceElement.Row source, Act act)
     {
         var mainElement = Create(source.aliasRef, power / 10);
-        var points1 = _map.ListPointsInLine(CC.pos, TP, 99);
+        
+        var points1 = _map.ListPointsInLine(CC.pos, TP, 99,false);
+        points1 = FilterValidPoints(points1); // 过滤无效点
+        
         points1.Remove(CC.pos);
         CC.Chara.Say("spell_bolt", CC.Chara, mainElement.Name.ToLower());
         Wait(0.8f, CC.Chara);
         ActEffect.TryDelay(() => CC.Chara.PlaySound("spell_bolt"));
+        
         var lineTargets = SpellEffects.Search(points1);
+        
         SpellEffects.Atk(CC, TP, power, mainElement, points1, act, source.alias, spellType: "bolt_");
+        
         var queue = new Queue<KeyValuePair<Point, int>>(lineTargets);
         while (queue.Count > 0)
         {
             var firstT = queue.Dequeue();
+            
+            // 安全检查：确保 firstT.Key 是有效的
+            if (!IsValidPoint(firstT.Key)) continue;
+            
             var targets = _map.ListPointsInCircle(firstT.Key, source.radius, false);
             foreach (var nextT in SpellEffects.Search(targets, firstT.Value))
             {
                 if (!lineTargets.ContainsKey(nextT.Key) && !Equals(nextT.Key, CC.pos))
                 {
+                    // 确保 nextT.Key 是有效的
+                    if (!IsValidPoint(nextT.Key)) continue;
+                    
                     lineTargets.Add(nextT.Key, nextT.Value);
                     queue.Enqueue(nextT);
                     var lines = _map.ListPointsInLine(firstT.Key, nextT.Key, (int)source.radius + 1);
+                    
+                    lines = FilterValidPoints(lines); // 再次过滤线段点
+                    
                     SpellEffects.Atk(CC, firstT.Key, power / Math.Max(nextT.Value / 2, 1), mainElement, lines, act,
                         source.alias, nextT.Value * 0.2f + 0.2f, spellType: "bolt_");
                 }
             }
         }
+    }
+    // 辅助方法：过滤有效点
+    private static List<Point> FilterValidPoints(List<Point> points)
+    {
+        return points.Where(p => IsValidPoint(p)).ToList();
+    }
+
+// 辅助方法：检查点是否有效
+    private static bool IsValidPoint(Point p)
+    {
+        return p != null && p.IsValid && p.IsInBounds && p.cell != null;
     }
 }
 
@@ -226,6 +253,10 @@ internal static class SpellEffects //效果
         var refPoints = new Dictionary<Point, int>(targets.Count * 2);
         foreach (var attackPoint in targets)
         {
+            // 添加安全检查：跳过无效点
+            if (attackPoint == null || !attackPoint.IsValid || !attackPoint.IsInBounds || attackPoint.cell == null)
+                continue;
+            
             var validCards = attackPoint
                 .ListCards(false)
                 .Where(card => card.isChara || card.trait.CanBeAttacked);

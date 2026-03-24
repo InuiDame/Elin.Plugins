@@ -87,7 +87,7 @@ namespace Condition_Normal
         // 每帧执行的效果 / Effect executed every frame / 毎フレーム実行される効果
         
         // 基于力量计算效果强度 / Calculate effect strength based on STR / STRに基づいて効果強度を計算
-        int num = Mathf.Max(EClass.curve(owner.STR * 10, 400, 100), 100);
+        int num = Mathf.Max(EClass.curve(owner.STR * 11, 400, 100), 100);
         
         // 对范围内敌对角色施加负面状态 / Apply negative status to hostile characters in range / 範囲内の敵対キャラにネガティブ状態を付与
         foreach (Chara chara in owner.pos.ListCharasInRadius(

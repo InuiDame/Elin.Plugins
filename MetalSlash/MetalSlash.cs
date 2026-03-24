@@ -92,7 +92,7 @@ namespace MetalSlash.spell
                         }
                     }
                     // 跳过1218检查，直接应用其他抗性
-                    damage = Element.GetResistDamage((int)damage, target.Evalue(e.source.aliasRef), resistBonus);
+                    damage = Element.GetResistDamage(damage, target.Evalue(e.source.aliasRef), resistBonus);
                 }
             }
 

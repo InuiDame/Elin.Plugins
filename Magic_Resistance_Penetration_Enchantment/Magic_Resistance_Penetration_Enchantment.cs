@@ -35,7 +35,7 @@ namespace MRPE
         // 方法1：直接修改GetResistDamage方法，通过AttackProcess.Current获取攻击者
         [HarmonyPatch(typeof(Element), nameof(Element.GetResistDamage))]
         [HarmonyPrefix]
-        public static bool OverrideResistDamage(ref int __result, int dmg, int v, int power = 0)
+        public static bool OverrideResistDamage(ref long __result, long dmg, int v, int power = 0)
         {
             try
             {
