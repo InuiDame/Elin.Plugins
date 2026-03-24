@@ -26,7 +26,7 @@ namespace GBF.dramaOutcome.Drama_Change_Sprite
                 return false;
             }
 
-            cidala.StartAcsClip("skin2");
+            cidala.SetSpriteOverride("Cidala2");
 
             // 更新角色肖像ID
             cidala.c_idPortrait = "Cidala_Style";
@@ -45,7 +45,7 @@ namespace GBF.dramaOutcome.Drama_Change_Sprite
             }
     
             // 使用ACS动画系统播放默认剪辑
-            cidala.StartAcsClip("skin1");
+            cidala.SetSpriteOverride("Cidala");
 
             // 更新角色肖像ID
             cidala.c_idPortrait = "Cidala";
