@@ -130,6 +130,97 @@ internal class BlowbackSpell : Spell //魔法: 吹飞
     }
 }
 
+internal class GatherSpell : Spell //魔法: 聚集 / 吸聚
+{
+    public override bool Perform()
+    {
+        var power = CC.elements.GetElement(source.aliasParent)?.Value ?? 1;
+        ProcAt_Internal(power, source, act);
+
+        var spellExp = CC.Chara.elements.GetSpellExp(CC.Chara, act);
+        CC.Chara.ModExp(source.alias, spellExp);
+
+        return true;
+    }
+
+    private static void ProcAt_Internal(int power, SourceElement.Row source, Act act)
+    {
+        var mainElement = Create(source.aliasRef, power / 10);
+
+        // 聚集范围：以 TP 为中心，半径 2（5×5 范围）
+        var radius = 2;
+        var targetsArea = _map.ListPointsInCircle(TP, radius, false, false);
+        if (targetsArea.Count == 0)
+            targetsArea.Add(TP.Copy());
+
+        // 施法表现
+        CC.Chara.Say("spell_ball", CC.Chara, mainElement.Name.ToLower());
+        Wait(0.8f, CC.Chara);
+        ActEffect.TryDelay(() => CC.Chara.PlaySound("spell_ball"));
+
+        var hits = SpellEffects.Search(targetsArea);
+
+        int pulledCount = 0;
+
+        foreach (var targetPair in hits)
+        {
+            var targetPoint = targetPair.Key;
+            var card = targetPoint.FirstChara;
+
+            if (card == null || !card.isChara || card.Chara == null)
+                continue;
+
+            var chara = card.Chara;
+
+            // 不影响自己
+            if (chara == CC.Chara)
+                continue;
+
+            // 302 Control Magic 保护（友军 + 中立NPC 有概率抵抗）
+            if (CC.Chara.IsFriendOrAbove(chara) || (chara.hostility == 0 && !chara.IsPCFactionOrMinion))
+            {
+                var controlLv = CC.Evalue(302);
+                if (!CC.IsPC && CC.IsPCFactionOrMinion)
+                    controlLv += EClass.pc.Evalue(302);
+
+                if (controlLv > 0)
+                {
+                    if (CC.HasElement(1214)) controlLv *= 2;
+
+                    if (controlLv * 8 > EClass.rnd(100))   // 抵抗概率，可调整
+                    {
+                        CC.ModExp(302, CC.IsPC ? 10 : 50);
+                        continue;
+                    }
+                }
+            }
+
+            // ================== 核心：把目标拉向 TP ==================
+            int pullStrength = Math.Max(power / 12, 3);   // 强度，可微调
+
+            for (int i = 0; i < pullStrength; i++)
+            {
+                // 正确调用方式：让目标尝试从 TP（中心点）移动 → 实际效果是往 TP 靠拢
+                chara.TryMoveFrom(TP);
+            }
+
+            pulledCount++;
+
+            // 可选：被拉动时在目标位置显示小特效
+            // Effect.Get("Element/ball_Ether").Play(chara.pos);
+        }
+
+        // 中心点显示聚集特效
+        Effect.Get("Element/ball_Ether").Play(TP);
+
+        if (pulledCount > 0)
+        {
+            // 如果游戏有对应文本，可以改成合适的；没有就删掉这行
+            // CC.Chara.Say("spell_gather_success", CC.Chara);
+        }
+    }
+}
+
 internal static class SpellEffects //效果
 {
     internal static void Atk(Chara cc, Point tp, int power, Element element,
@@ -190,20 +281,41 @@ internal static class SpellEffects //效果
             foreach (var card in hits)
             {
 
-                if (card.Chara != null && cc.Chara.IsFriendOrAbove(card.Chara))
+                bool isProtected = false;   // 新增：是否需要走302保护
+
+                if (card.Chara != null)
+                {
+                    // 原有：明确友军（pets、party 等）
+                    if (cc.Chara.IsFriendOrAbove(card.Chara))
+                    {
+                        isProtected = true;
+                    }
+                    // 新增：中立 NPC（hostility == 0 且不是敌对）
+                    else if (card.Chara.hostility == 0 && !card.Chara.IsPCFactionOrMinion)
+                    {
+                        isProtected = true;
+                    }
+                }
+
+                // 如果是受保护目标（友军 或 中立NPC），执行302 Control Magic 逻辑
+                if (isProtected)
                 {
                     var controlLv = cc.Evalue(302);
-                    if (!cc.IsPC && cc.IsPCFactionOrMinion)
-                        controlLv += EClass.pc.Evalue(302);
+                    if (!cc.IsPC && cc.IsPCFactionOrMinion) controlLv += EClass.pc.Evalue(302);
+                
                     if (controlLv > 0)
                     {
-                        if (cc.HasElement(1214)) controlLv *= 2;
+                        if (cc.HasElement(1214)) controlLv *= 2;   // 可能的部分强化
+
+                        // 概率完全免伤
                         if (controlLv * 10 > EClass.rnd(dmg + 1))
                         {
                             if (card == card.pos.FirstChara)
                                 cc.ModExp(302, cc.IsPC ? 10 : 50);
-                            continue;
+                            continue;   // 跳过伤害
                         }
+
+                        // 否则按比例降低伤害
                         dmg = EClass.rnd(dmg * 100 / (100 + controlLv * 10 + 1));
                         if (card == card.pos.FirstChara)
                             cc.ModExp(302, cc.IsPC ? 20 : 100);
