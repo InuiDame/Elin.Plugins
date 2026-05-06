@@ -12,7 +12,6 @@ using HarmonyLib;
 using UnityEngine;
 using System.IO;
 using ACS.API;
-using ACS.Components;
 using Cwl.Helper.Extensions;
 
 namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
@@ -29,12 +28,38 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
         private static void SwitchToCidala2()
         {
             ChangeCharacterSprite("Cidala", "Cidala2", "Cidala_Style");
+            AddCharacterAction("Cidala", 170056, 100, false);
+            AddCharacterAction("Cidala", 170057, 100, false);
+            AddCharacterAction("Cidala", 170058, 100, false);
+            RemoveCharacterAction("Cidala", 140022);
+            RemoveCharacterAction("Cidala", 140023);
+            RemoveCharacterAction("Cidala", 140024);
+            RemoveCharacterAction("Cidala", 140025);
         }
 
         [CwlContextMenu("gbf_ui_cidala_twin")]
         private static void SwitchToCidala1()
         {
             ChangeCharacterSprite("Cidala", "Cidala", "Cidala");
+            AddCharacterAction("Cidala", 140022, 100, false);
+            AddCharacterAction("Cidala", 140023, 100, false);
+            AddCharacterAction("Cidala", 140024, 100, false);
+            AddCharacterAction("Cidala", 140025, 100, false);
+            RemoveCharacterAction("Cidala", 170056);
+            RemoveCharacterAction("Cidala", 170057);
+            RemoveCharacterAction("Cidala", 170058);
+        }
+
+        [CwlContextMenu("gbf_ui_cidala_Bag")]
+        private static void SwitchToCidala3()
+        {
+            ChangeCharacterSprite("Cidala", "Cidala3", "Cidala3");
+        }
+        
+        [CwlContextMenu("gbf_ui_cidala_Stripes")]
+        private static void SwitchToCidala4()
+        {
+            ChangeCharacterSprite("Cidala", "Cidala4", "Cidala4");
         }
 
         [CwlContextMenu("gbf_ui_Vajra_normal")]

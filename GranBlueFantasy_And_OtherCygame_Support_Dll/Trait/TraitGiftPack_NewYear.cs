@@ -16,20 +16,8 @@ namespace GBF.trait.TraitGiftPack_NewYear
         EClass.pc.Say("openDoor", EClass.pc, this.owner, null, null);
         SE.Play("dropReward");  // 播放奖励掉落音效 / Play reward drop sound / 報酬ドロップ音声を再生
         
-        // 给予6个eg_sota物品 / Give 6 eg_sota items / eg_sotaアイテムを6個付与
-        EClass.pc.Pick(ThingGen.Create("eg_sota", -1, -1), true, true);
-        EClass.pc.Pick(ThingGen.Create("eg_sota", -1, -1), true, true);
-        EClass.pc.Pick(ThingGen.Create("eg_sota", -1, -1), true, true);
-        EClass.pc.Pick(ThingGen.Create("eg_sota", -1, -1), true, true);
-        EClass.pc.Pick(ThingGen.Create("eg_sota", -1, -1), true, true);
-        EClass.pc.Pick(ThingGen.Create("eg_sota", -1, -1), true, true);
-        
         // 给予特殊物品 / Give special items / 特殊アイテムを付与
         EClass.pc.Pick(ThingGen.Create("GBF_Serpentius", -1, -1), true, true);  // 蛇神武器 / Serpentius weapon / 蛇神武器
-        EClass.pc.Pick(ThingGen.Create("Festival_ChineseNewyear", -1, -1), true, true);  // 春节物品 / Chinese New Year item / 春節アイテム
-        EClass.pc.Pick(ThingGen.Create("Festival_ChineseNewyear", -1, -1), true, true);
-        EClass.pc.Pick(ThingGen.Create("Festival_ChineseNewyear", -1, -1), true, true);
-        EClass.pc.Pick(ThingGen.Create("Festival_ChineseNewyear", -1, -1), true, true);
         
         // 召唤Indala角色 / Summon Indala character / Indalaキャラを召喚
         Chara chara = CharaGen.Create("Indala", -1);

@@ -94,7 +94,7 @@ public class TraitVajraChara : TraitChara
         if (container == null) return;
         
         // 检查任务完成标志 / 任務完了フラグをチェック / Check mission completion flag
-        int hascidalamission1 = pc.GetFlagValue("cm1end1");
+        int hascidalamission1 = pc.GetFlagValue("cm1end2");
         
         // 如果任务完成度 >= 1 / 任務完了度が1以上の場合は / If mission completion >= 1
         if (hascidalamission1 >= 1)
@@ -109,5 +109,15 @@ public class TraitVajraChara : TraitChara
             container.AddThing(item);
         }
     }
+    
+    public static bool IscaptainDialog => EClass.player.dialogFlags.TryGetValue("Vajrascaptain", 0) >= 1;
+
+    public override bool CanInvite => IscaptainDialog;
+
+    public override bool CanJoinParty => IscaptainDialog;
+
+    public override bool CanJoinPartyResident => IscaptainDialog;
+
+    public override bool CanBout => false;
 }
 }

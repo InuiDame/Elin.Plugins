@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using BepInEx;
 using BepInEx.Configuration;
+using Condition_SK2559;
 using Cwl.API.Custom;
 using Cwl.Helper.Unity;
 using Cwl.LangMod;
@@ -54,10 +55,19 @@ static class MeleeAttackPatches
             var cc = Act.CC;
             if (cc == null) return;
 
-            var doubleStrike = cc.GetCondition<ConGBFStat6156>();  // 检查连击效果 / Check double strike effect / 連撃効果をチェック
-            if (doubleStrike != null)
+            var c1 = cc.GetCondition<ConGBFStat6156>();
+            var c2 = cc.GetCondition<ConSK2559>();
+
+            int extraAttacks = 0;
+
+            if (c1 != null)
+                extraAttacks += c1.GetExtraAttacks();
+
+            if (c2 != null)
+                extraAttacks += c2.GetExtraAttacks();
+
+            if (extraAttacks > 0)
             {
-                int extraAttacks = doubleStrike.GetExtraAttacks();  // 获取额外攻击次数 / Get extra attack count / 追加攻撃回数を取得
 
                 // 设置标志并执行额外攻击 / Set flag and execute extra attacks / フラグを設定して追加攻撃を実行
                 isExecutingExtraAttack = true;
@@ -129,11 +139,20 @@ static class AttackProcessPerformPatches
         {
             if (__instance.CC == null) return;
 
-            var doubleStrike = __instance.CC.GetCondition<ConGBFStat6156>();  // 检查连击效果 / Check double strike effect / 連撃効果をチェック
-            if (doubleStrike != null && __instance.IsRanged)  // 仅对远程攻击生效 / Only works for ranged attacks / 遠距離攻撃のみ有効
+            var c1 = __instance.CC.GetCondition<ConGBFStat6156>();
+            var c2 = __instance.CC.GetCondition<ConSK2559>();
+
+            int extraAttacks = 0;
+
+            if (c1 != null)
+                extraAttacks += c1.GetExtraAttacks();
+
+            if (c2 != null)
+                extraAttacks += c2.GetExtraAttacks();
+
+            if (extraAttacks > 0 && __instance.IsRanged)
             {
-                int extraAttacks = doubleStrike.GetExtraAttacks();  // 获取额外攻击次数 / Get extra attack count / 追加攻撃回数を取得
-                __state = extraAttacks + 1; // 存储倍数到 __state / Store multiplier to __state / 倍数を__stateに保存
+                __state = extraAttacks + 1;
 
                 // 如果是远程攻击且是第一次攻击，修改numFire / If ranged attack and first attack, modify numFire / 遠距離攻撃で最初の攻撃の場合、numFireを変更
                 if (count == 0)
@@ -257,24 +276,29 @@ static IEnumerable<CodeInstruction> UseAbilityTranspiler(IEnumerable<CodeInstruc
 }
 
 // 辅助方法 - 获取法术多重施法倍数 / Helper method - Get spell multi-cast multiplier / 補助メソッド - 魔法多重詠唱倍数を取得
-public static int GetSpellMultiplier(Chara cc)
-{
-    try
-    {
-        var doubleStrike = cc?.GetCondition<ConGBFStat6156>();  // 检查连击效果 / Check double strike effect / 連撃効果をチェック
-        if (doubleStrike != null)
+        public static int GetSpellMultiplier(Chara cc)
         {
-            int multiplier = doubleStrike.GetExtraAttacks() + 1;  // 计算倍数 / Calculate multiplier / 倍数を計算
-            return multiplier;
+            try
+            {
+                var c1 = cc?.GetCondition<ConGBFStat6156>();
+                var c2 = cc?.GetCondition<ConSK2559>();
+
+                int extra = 0;
+
+                if (c1 != null)
+                    extra += c1.GetExtraAttacks();
+
+                if (c2 != null)
+                    extra += c2.GetExtraAttacks();
+
+                return extra > 0 ? extra + 1 : 1;
+            }
+            catch (Exception ex)
+            {
+                Debug.Log($"GetSpellMultiplier 异常: {ex.Message}");
+                return 1;
+            }
         }
-        return 1;  // 默认倍数1 / Default multiplier 1 / デフォルト倍数1
-    }
-    catch (Exception ex)
-    {
-        Debug.Log($"GetSpellMultiplier 异常: {ex.Message}");  // 记录异常 / Log exception / 例外を記録
-        return 1;
-    }
-}
 
     }
 }

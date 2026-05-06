@@ -45,6 +45,10 @@
             <Private>False</Private>
         </Reference>
     </ItemGroup>
+	
+	 <ItemGroup>
+	   <PackageReference Include="System.Linq" Version="4.3.0" />
+	 </ItemGroup>
     
     <Target Name="CopyAssets" AfterTargets="AfterBuild">
         <ItemGroup>

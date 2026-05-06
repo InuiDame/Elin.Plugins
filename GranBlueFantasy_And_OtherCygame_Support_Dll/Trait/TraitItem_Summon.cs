@@ -187,8 +187,7 @@ namespace GBF.trait.TraitItem_Summon
         // 检查BOSS是否已存在 / Check if BOSS already exists / BOSSが既に存在するか確認
         Chara chara = EClass.game.cards.globalCharas.Values.FirstOrDefault((Chara gc) => gc.id == "GBF_Boss_Luminiera_1");
         if (chara != null)
-        {
-            this.owner.ModNum(-1, true);  // 消耗物品但召唤失败 / Consume item but summon fails / アイテム消費するが召喚失敗
+        { 
             return false;
         }
         
@@ -210,9 +209,40 @@ namespace GBF.trait.TraitItem_Summon
         EClass._zone.AddCard(chara, c.pos.GetNearestPoint(false, false, true, false));  // 添加到最近可用位置 / Add to nearest available position / 最寄りの利用可能位置に追加
         chara.PlayEffect("teleport", true, 0f, default(Vector3));  // 播放传送特效 / Play teleport effect / テレポートエフェクトを再生
         this.owner.ModNum(-1, true);  // 消耗物品 / Consume item / アイテム消費
-        
+        CustomAchievement.Unlock("GBF_achievement_1");
         // 注意：敌方BOSS不会设置为盟友 / Note: Enemy BOSS is not set as ally / 注意：敵BOSSは味方に設定されない
         return true;  // 使用成功 / Usage successful / 使用成功
+    }
+}
+    internal class TraitColossusSummon : TraitItem
+{
+    public override bool OnUse(Chara c)
+    {
+        if (!c.IsPC)
+        {
+            return false;
+        }
+        Chara chara = EClass.game.cards.globalCharas.Values.FirstOrDefault((Chara gc) => gc.id == "GBF_Boss_Colossus");
+        if (chara != null)
+        {
+            return false;
+        }
+        if (!CustomChara.CreateTaggedChara("GBF_Boss_Colossus", out chara, new string[]
+        {
+        }, null) || chara == null)
+        {
+            if (chara != null)
+            {
+                chara.Destroy();  
+            }
+            this.owner.ModNum(-1, true); 
+            return false;
+        }
+        EClass._zone.AddCard(chara, c.pos.GetNearestPoint(false, false, true, false)); 
+        chara.PlayEffect("teleport", true, 0f, default(Vector3)); 
+        this.owner.ModNum(-1, true);
+        CustomAchievement.Unlock("GBF_achievement_1");
+        return true;  
     }
 }
 }

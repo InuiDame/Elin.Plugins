@@ -44,6 +44,10 @@
             <Private>False</Private>
         </Reference>
     </ItemGroup>
+	
+	 <ItemGroup>
+	   <Folder Include="Lib\" />
+	 </ItemGroup>
     
     <Target Name="CopyAssets" AfterTargets="AfterBuild">
         <ItemGroup>

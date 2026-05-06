@@ -255,4 +255,61 @@ namespace Condition_Noraml
     {
         public override int GetPhase() => 0;
     }
+    
+    public class ConGBFColossus2 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConGBFFire2 : Timebuff
+    //背水
+    {
+        public override void OnStart()
+        {
+            float lostHPRatio = (owner.MaxHP - owner.hp) / (float)owner.MaxHP;
+            int steps = Mathf.FloorToInt(lostHPRatio * 20); // 20 = 100% / 5%
+            float damageMultiplier = 1 + steps * 0.05f;
+            owner.elements.SetBase(67, (int)(damageMultiplier * 200));
+            owner.elements.SetBase(140008, (int)(damageMultiplier * 100));
+        }
+        public override void Tick()
+        {
+
+            float lostHPRatio = (owner.MaxHP - owner.hp) / (float)owner.MaxHP;
+            int steps = Mathf.FloorToInt(lostHPRatio * 20); // 20 = 100% / 5%
+            float damageMultiplier = 1 + steps * 0.05f;
+            owner.elements.SetBase(67, (int)(damageMultiplier * 200));
+            owner.elements.SetBase(140008, (int)(damageMultiplier * 100));
+            Mod(-1);
+
+        }
+
+        public override int GetPhase() => 0;
+
+    }
+    
+    public class ConGBFFire3 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConGBFFire4 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConGBFFire5 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConSK2560 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConSK2561 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
 }

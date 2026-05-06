@@ -7,8 +7,7 @@
       "Num": 10,
       "Restock": true,
 	  "Rarity": "Normal",
-      "Type": "Item",
-      "Identified": true
+      "Type": "Item"
     },
 	{
       "Id": "GBF_EleventhTreat2",
@@ -17,7 +16,7 @@
       "Restock": false,
 	  "Rarity": "Normal",
       "Type": "Item",
-      "Identified": true
+	  "Blessed": "Blessed"
     },
     {
       "Id": "GBF_SK_0533",
@@ -72,6 +71,21 @@
       "Num": 3,
 	  "Restock": true,
       "Type": "Spell"
+    },
+	{
+      "Id": "spring2025gift",
+      "Num": 1,
+	  "Material": "",
+      "Restock": false,
+      "Type": "Item"
+    },
+	{
+      "Id": "GBF_HalaKahiki",
+      "Num": 5,
+	  "Material": "",
+	  "Restock": true,
+	  "Rarity": "Normal",
+      "Type": "Item"
     }
   ]
 }

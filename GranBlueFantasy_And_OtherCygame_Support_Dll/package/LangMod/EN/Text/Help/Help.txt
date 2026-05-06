@@ -1,0 +1,12 @@
+$MOD Other Features
+
+Listed here are some additional features of the MOD for ease of use.
+
+{topic|Switch Character Skin}
+
+You can switch your character's skin from the ESC menu.
+
+{topic|Bestial Rampage Effect}
+
+Similar to Mechanical Enhancement, the stats increased by Bestial Rampage are also percentage-based bonuses.
+

@@ -147,4 +147,44 @@ public class Traitcidaladojin2 : TraitItem
         return true;
     }
 }
+public class TraitSkyfarerLegends : TraitItem 
+{ 
+    public override bool CanBeDestroyed
+    {
+        get
+        {
+            if (!owner.isNPCProperty)
+            {
+                return base.CanBeDestroyed;
+            }
+            return false;
+        }
+    }
+    
+    public override bool CanBeStolen => false;
+    public override bool CanStack => false;
+    public override bool OnUse(Chara c)
+    {
+        Msg.Say("SkyfarerLegends_book_mission", owner);
+        GivePlayerItems();
+        EClass.Sound.Play("tape");
+        owner.ModNum(-1);
+        return false;
+    }
+    
+    private void GivePlayerItems()
+    {
+        SE.Play("dropReward");
+        EClass.pc.Pick(ThingGen.Create("SkyfarerLegends2"));
+    }
+}
+
+public class TraitGBFQuestBook : TraitBook
+{
+    // 不可被摧毁 / 破壊不可 / Cannot be destroyed
+    public override bool CanBeDestroyed => false;
+
+    // 不可被偷窃 / 盗難不可 / Cannot be stolen
+    public override bool CanBeStolen => false;
+}
 }

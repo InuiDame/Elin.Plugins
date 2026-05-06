@@ -220,4 +220,96 @@ namespace GBF.spell.Spell_Effects.Spell_Effect_Custom_Effect_Large
         }
     }
 }
+    
+     internal static class GBFSpellEffects_Colossus
+{
+    internal static void Atk(Chara cc, Point tp, int power, Element element, List<Point> targets, Act act, string alias, float exDelay = 0f, bool rev = false, string spellType = "ball_")
+    {
+        if (cc == null) throw new ArgumentNullException(nameof(cc));
+        if (element == null) throw new ArgumentNullException(nameof(element));
+        if (targets == null) throw new ArgumentNullException(nameof(targets));
+        
+        int num = Act.powerMod / 100;  
+        int num2 = ((act != null) ? act.ElementPowerMod : 50) / 25;  
+        
+        string diceAlias = !string.IsNullOrEmpty(alias) ? alias : "ball_";
+        Dice dice = Dice.Create(diceAlias, power, cc, act);
+
+        if (dice == null)
+        {
+            diceAlias = "ball_";
+            dice = Dice.Create(diceAlias, power, cc, act);
+
+            if (dice == null)
+            {
+                dice = new Dice(power, power); 
+                Debug.LogWarning($"Using fallback dice for alias: {alias}");  
+            }
+        }
+
+        foreach (Point point in targets)
+        {
+            int num3 = Math.Max(tp.Distance(point), 1);  
+            float num4;
+            if (rev)
+            {
+                num4 = 0.25f / (float)num3;  
+            }
+            else
+            {
+                num4 = 0.04f * (float)num3;  
+            }
+
+            int num5 = dice.Roll();  
+            int num6 = (int)((double)(num * num5) / (0.1 * (double)(9 + tp.Distance(point))));  
+            
+            var hits = point
+                .ListCards(false)
+                .Where(card => card.isChara || card.trait.CanBeAttacked)
+                .ToList();
+
+            foreach (Card card2 in hits)
+            {
+                Chara target = card2.Chara;  
+                if (target != null && cc.Chara.IsFriendOrAbove(target))
+                {
+                    int num7 = cc.Evalue(302);  
+                    if (!cc.IsPC && cc.IsPCFactionOrMinion)
+                        num7 += EClass.pc.Evalue(302);
+
+                    if (num7 > 0)
+                    {
+                        if (cc.HasElement(1214, 1))
+                            num7 *= 2;  
+
+                        Debug.Log($"GBFSpellColossus: controlLv:{num7 * 10}, dmg:{EClass.rnd(num6 + 1)}");  
+
+                        if (num7 * 10 > EClass.rnd(num6 + 1))  
+                        {
+                            if (card2 == card2.pos.FirstChara)
+                                cc.ModExp(302, cc.IsPC ? 10 : 50);  
+                            continue;   
+                        }
+                        else
+                        {
+                            num6 = EClass.rnd(num6 * 100 / (100 + num7 * 10 + 1));  
+                            if (card2 == card2.pos.FirstChara)
+                                cc.ModExp(302, cc.IsPC ? 20 : 100);  
+                        }
+                    }
+                }
+                
+                card2.DamageHP(num6, element.id, power * num2, AttackSource.None, cc, true);
+                
+                if (card2.isChara && target != null && !target.IsPCFactionOrMinion)
+                {
+                    target.hostility -= 2;  
+                }
+
+                cc.Say("Spell_GBF_2701_hit", cc, card2, element.Name.ToLower(), null);  
+                Act.CC.Chara.PlaySound("Colossus_skill", 1f, true);
+            }
+        }
+    }
+}
 }

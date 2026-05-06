@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -69,6 +70,27 @@ namespace GBF.Modinfo
             
             new Harmony("GBFelement").PatchAll();  // 应用Harmony补丁 / Apply Harmony patches / Harmonyパッチを適用
             Logger.LogInfo("GBF元素已激活");  // 记录激活信息 / Log activation info / アクティベーション情報を記録
+        }
+        
+        [HarmonyPatch(typeof(Region), "CheckRandomSites")]
+        public static class CheckRandomSitesPatch
+        {
+            [HarmonyPostfix]
+            public static void Postfix(Region __instance)
+            {
+                if (__instance.FindZone("GBF_Hidden_Graveyard") != null)
+                {
+                    return;
+                }
+                try
+                {
+                    SpatialGen.Create("GBF_Hidden_Graveyard", __instance, register: true);
+                }
+                catch
+                {
+                    Debug.LogError($"[GBF] Failed to create zone: GBF_Hidden_Graveyard");
+                }
+            }
         }
     }
 }
