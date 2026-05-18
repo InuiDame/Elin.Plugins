@@ -27,7 +27,7 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
         [CwlContextMenu("gbf_ui_cidala_combine")]
         private static void SwitchToCidala2()
         {
-            ChangeCharacterSprite("Cidala", "Cidala2", "Cidala_Style");
+            ChangeCharacterSprite("Cidala", "Cidala2", "Cidala2");
             AddCharacterAction("Cidala", 170056, 100, false);
             AddCharacterAction("Cidala", 170057, 100, false);
             AddCharacterAction("Cidala", 170058, 100, false);
@@ -155,9 +155,7 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
     
             // 
             chara.SetSpriteOverride(skin);
-
-            // 更新角色肖像ID
-            chara.c_idPortrait = portraitId;
+            chara.SetPortraitOverride(portraitId);
 
             UnityEngine.Debug.Log($"已切换角色 {charaId} 的皮肤为: {skin} ");
             return true;                                       // 返回成功 / Return success / 成功を返す

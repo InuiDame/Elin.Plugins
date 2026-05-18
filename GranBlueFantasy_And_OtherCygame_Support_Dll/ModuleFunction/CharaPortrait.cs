@@ -1,23 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System.Reflection;
-using System.Reflection.Emit;
-using BepInEx;
-using BepInEx.Configuration;
 using Cwl.API.Attributes;
-using Cwl.API.Custom;
-using Cwl.Helper.FileUtil;
-using Cwl.Helper.Unity;
-using BepInEx.Core.Logging.Interpolation;
-using BepInEx.Logging;
-using Cwl.LangMod;
-using DG.Tweening.Plugins.Core;
-using GBF.Modinfo;
-using HarmonyLib;
-using UnityEngine;
-using UnityEngine.UI;
+using Cwl.Helper.Extensions;
 
 namespace GBF.ModuleFunction.CharaPortrait
 {

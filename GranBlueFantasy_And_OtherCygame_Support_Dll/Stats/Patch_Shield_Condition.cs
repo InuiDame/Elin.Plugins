@@ -32,7 +32,8 @@ namespace Patch_Shield_Condition
             typeof(Card),
             typeof(bool),
             typeof(Thing),
-            typeof(Chara)
+            typeof(Chara),          
+            typeof(int)
         })]
         [HarmonyPrefix]
         internal static bool HandleShieldDamage(Card __instance, ref long dmg, AttackSource attackSource)

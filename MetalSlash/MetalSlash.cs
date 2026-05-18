@@ -26,7 +26,8 @@ namespace MetalSlash.spell
     typeof(Card),
     typeof(bool),
     typeof(Thing),
-    typeof(Chara)
+    typeof(Chara),          
+    typeof(int)
 })]
         [HarmonyPrefix]
         public static bool OverrideDamageCalculation(Card __instance,
