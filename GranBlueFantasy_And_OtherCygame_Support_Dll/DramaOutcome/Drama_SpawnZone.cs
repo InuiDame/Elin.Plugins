@@ -11,8 +11,10 @@ using Cwl.LangMod;
 
 namespace GBF.dramaOutcome.Drama_SpawnZone
 {
+    
     internal class Tiger_Drama_SpawnZone : DramaOutcome
     {
+        [ElinDramaActionInvoke]
         // 在指定坐标生成海滩区域 / Spawn beach zone at specified coordinates / 指定座標にビーチゾーンを生成
         public static bool SpawnZonebeach_cidala(DramaManager dm, Dictionary<string, string> line, params string[] parameters)
         {

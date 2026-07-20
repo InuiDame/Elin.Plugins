@@ -5,7 +5,21 @@
         "IdEffect": "gunfire",
         "IdSound": "attack_gun_shotgun",
         "IdSprite": "ranged_gun",
+		"IdSoundEject": "bullet_drop",
         "Eject": true,
+        "FirePos": {
+            "x": 0.23,
+            "y": 0.04
+        }
+    },
+	"GBF_AL_PeaShooter": {
+        "Num": 1,
+        "Delay": 0.1,
+        "IdEffect": "spaceimage",
+        "IdSound": "peashoot",
+        "IdSprite": "PeaBullet",
+        "Eject": false,
+		"FireFromMuzzle": true,
         "FirePos": {
             "x": 0.23,
             "y": 0.04

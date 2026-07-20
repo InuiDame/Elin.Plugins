@@ -17,6 +17,7 @@ namespace GBF.dramaOutcome.Drama_Change_Sprite
         private static readonly int _mainTex = Shader.PropertyToID("_MainTex");  // 主纹理属性ID / Main texture property ID / メインテクスチャプロパティID
 
         // 切换Cidala角色精灵图到样式2 / Switch Cidala character sprite to style 2 / Cidalaキャラクタースプライトをスタイル2に切り替え
+        [ElinDramaActionInvoke]
         public static bool Tiger_change_sprite2(DramaManager dm, Dictionary<string, string> line, params string[] parameters)
         {
             
@@ -35,6 +36,7 @@ namespace GBF.dramaOutcome.Drama_Change_Sprite
         }
 
         // 切换Cidala角色精灵图到默认样式 / Switch Cidala character sprite to default style / Cidalaキャラクタースプライトをデフォルトスタイルに切り替え
+        [ElinDramaActionInvoke]
         public static bool Tiger_change_sprite(DramaManager dm, Dictionary<string, string> line, params string[] parameters)
         {
             

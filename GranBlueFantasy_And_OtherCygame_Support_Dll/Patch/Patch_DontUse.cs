@@ -20,30 +20,26 @@ namespace GBF.Patch_DontUse
     [HarmonyPatch(typeof(AttackProcess), nameof(AttackProcess.GetRawDamage))]
     static class Patch_GetRawDamage_Katana
     {
-        // 注意：参数签名必须和原方法匹配，最后一个 ref int __result 用来改返回值
         static void Postfix(AttackProcess __instance,
             float dmgMulti,
             bool crit,
             bool maxRoll,
             ref long __result)
         {
-
-            // 1) 目标必须存在且是角色
-            var tc = __instance.TC;
-            if (tc?.Chara == null)
+            
+            var cc = __instance.CC;
+            if (cc?.Chara == null)
                 return;
-
-            // 2) 拿到武士刀元素
-            Element katana = tc.elements.GetOrCreateElement("weaponKatana");
+            
+            Element katana = cc.elements.GetOrCreateElement("weaponKatana");
             if (katana == null || katana.ValueWithoutLink <= 0)
                 return;
-
-            // 3) 计算倍率：Min(1 + LV/5, 2 + LV/7)
-            int lv = tc.LV;
+            
+            int lv = cc.LV;
             int mul = Mathf.Min(1 + lv / 5, 2 + lv / 7);
-
-            // 4) 把加成叠到 __result 上
-            __result += katana.ValueWithoutLink * mul;
+            float fnmul = mul * 0.01f;
+            
+            __result += (long)Mathf.Round(katana.ValueWithoutLink * fnmul);
         }
     }
 }
