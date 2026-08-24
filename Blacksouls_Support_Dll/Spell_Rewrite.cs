@@ -76,7 +76,7 @@ namespace Spell_Rewrite
                 {
                     effect2.Play(point, 0f, null, null);
                 }
-                int num5 = dice.Roll();
+                long num5 = dice.Roll();
                 int num6 = (int)((double)(num * num5) / (0.1 * (double)(9 + tp.Distance(point))));
                 // 先把整个查询改写成 LINQ + ToList()，好调试也好维护
                 // Convert the entire query to LINQ + ToList() for better debugging and maintenance
@@ -222,7 +222,7 @@ namespace Spell_Rewrite
                 {
                     effect2.Play(point, 0f, null, null);
                 }
-                int num5 = dice.Roll();
+                long num5 = dice.Roll();
                 int num6 = (int)((double)(num * num5) / (0.1 * (double)(9 + tp.Distance(point))));
                 // 先把整个查询改写成 LINQ + ToList()，好调试也好维护
                 // Convert the entire query to LINQ + ToList() for better debugging and maintenance
@@ -368,7 +368,7 @@ namespace Spell_Rewrite
                 {
                     effect2.Play(point, 0f, null, null);
                 }
-                int num5 = dice.Roll();
+                long num5 = dice.Roll();
                 int num6 = (int)((double)(num * num5) / (0.1 * (double)(9 + tp.Distance(point))));
                 // 先把整个查询改写成 LINQ + ToList()，好调试也好维护
                 // Convert the entire query to LINQ + ToList() for better debugging and maintenance
@@ -722,7 +722,7 @@ namespace Spell_Rewrite
                 {
                     effect2.Play(point, 0f, null, null);
                 }
-                int num5 = dice.Roll();
+                long num5 = dice.Roll();
                 int num6 = (int)((double)(num * num5) / (0.1 * (double)(9 + tp.Distance(point))));
                 foreach (Card card2 in from card in point.ListCards(false)
                                        where card.isChara || card.trait.CanBeAttacked

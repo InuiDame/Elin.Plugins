@@ -120,10 +120,10 @@ public static class CharaTick_IceDance
 
 // ==================== 欧罗巴城期间正面buff冻结 ====================
 
-[HarmonyPatch(typeof(Timebuff), "Tick")]
+[HarmonyPatch(typeof(Condition), "Tick", new Type[] { })]
 public static class TimebuffTick_Freeze
 {
-    public static bool Prefix(Timebuff __instance)
+    public static bool Prefix(Condition __instance)
     {
         try
         {
@@ -144,7 +144,7 @@ public static class TimebuffTick_Freeze
 
 // ==================== 惟愿常伴您身旁：追击 ====================
 
-[HarmonyPatch(typeof(Card), "DamageHP")]
+[HarmonyPatch(typeof(Card), "DamageHP", new Type[] { typeof(long), typeof(int), typeof(int), typeof(AttackSource), typeof(Card), typeof(bool), typeof(Thing), typeof(Chara), typeof(int) })]
 public static class CardDamageHP_Pursuit
 {
     private static bool pursuitLock = false;

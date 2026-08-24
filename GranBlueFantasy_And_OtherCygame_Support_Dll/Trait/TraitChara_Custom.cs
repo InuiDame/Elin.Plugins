@@ -95,6 +95,7 @@ public class TraitVajraChara : TraitChara
         
         // 检查任务完成标志 / 任務完了フラグをチェック / Check mission completion flag
         int hascidalamission1 = pc.GetFlagValue("cm1end2");
+        int hasClarissemission1 = pc.GetFlagValue("Clarissemissionend1");
         
         // 如果任务完成度 >= 1 / 任務完了度が1以上の場合は / If mission completion >= 1
         if (hascidalamission1 >= 1)
@@ -106,6 +107,14 @@ public class TraitVajraChara : TraitChara
             //无需鉴定 / 鑑定不要 / No appraisal needed
             item.c_IDTState = 0;
             // 添加到商人容器 / 商人コンテナに追加 / Add to merchant container
+            container.AddThing(item);
+        }
+        
+        if (hasClarissemission1 >= 1)
+        {
+            Thing item = ThingGen.Create("GBF_AL_PeaShooter", -1, -1);
+            item.SetNum(1);
+            item.c_IDTState = 0;
             container.AddThing(item);
         }
     }

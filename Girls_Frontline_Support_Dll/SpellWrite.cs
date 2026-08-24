@@ -73,7 +73,7 @@ namespace SpellWrite
                 {
                     effect2.Play(point, 0f, null, null);
                 }
-                int num5 = dice.Roll();
+                long num5 = dice.Roll();
                 int num6 = (int)((double)(num * num5) / (0.1 * (double)(9 + tp.Distance(point))));
                 
                 // 优化：预先获取点上的卡片列表，避免重复调用 / Optimization: Pre-get card list on point to avoid repeated calls / 最適化：ポイント上のカードリストを事前取得、重複呼び出しを回避

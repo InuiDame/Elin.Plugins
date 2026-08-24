@@ -93,7 +93,7 @@ namespace GBF.spell.Spell_Effects.Spell_Effect_Custom_Effect
             // 简化：移除条件判断，统一播放特效 / Simplified: Remove conditional judgment, uniformly play effects / 簡素化：条件判断を削除、統一してエフェクトを再生
             effect2.Play(point, 0f, null, null);  // 播放特效 / Play effect / エフェクトを再生
 
-            int num5 = dice.Roll();  // 骰子掷点 / Dice roll / ダイスロール
+            long num5 = dice.Roll();  // 骰子掷点 / Dice roll / ダイスロール
             int num6 = (int)((double)(num * num5) / (0.1 * (double)(9 + tp.Distance(point))));  // 伤害计算 / Damage calculation / ダメージ計算
 
             // 获取目标点上的可攻击对象 / Get attackable objects on target point / ターゲットポイント上の攻撃可能オブジェクトを取得

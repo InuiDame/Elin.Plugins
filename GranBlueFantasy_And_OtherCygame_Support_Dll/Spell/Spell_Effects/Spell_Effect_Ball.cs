@@ -70,7 +70,7 @@ namespace GBF.spell.Spell_Effects.Spell_Effect_Ball
                 {
                     effect2.Play(point, 0f, null, null);  // 播放其他类型特效 / Play other type effects / 他のタイプエフェクトを再生
                 }
-                int num5 = dice.Roll();  // 骰子掷点 / Dice roll / ダイスロール
+                long num5 = dice.Roll();  // 骰子掷点 / Dice roll / ダイスロール
                 int num6 = (int)((double)(num * num5) / (0.1 * (double)(9 + tp.Distance(point))));  // 伤害计算 / Damage calculation / ダメージ計算
                 
                 // 先把整个查询改写成 LINQ + ToList()，好调试也好维护 / Convert entire query to LINQ + ToList() for better debugging and maintenance / デバッグと保守性向上のため全体クエリをLINQ + ToList()に変換

@@ -69,7 +69,7 @@ namespace GBF.spell.Spell_Effects.Spell_Effect_Custom_Effect_DiceChange
                 num4 = 0.04f * (float)num3;  // 正向延迟计算 / Forward delay calculation / 順方向遅延計算
             }
 
-            int num5 = dice.Roll();  // 骰子掷点 / Dice roll / ダイスロール
+            long num5 = dice.Roll();  // 骰子掷点 / Dice roll / ダイスロール
             int num6 = (int)((double)(num * num5) / (0.1 * (double)(9 + tp.Distance(point))));  // 伤害计算 / Damage calculation / ダメージ計算
 
             // 获取目标点上的可攻击对象 / Get attackable objects on target point / ターゲットポイント上の攻撃可能オブジェクトを取得
