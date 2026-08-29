@@ -1,4 +1,3 @@
-using Cwl.Helper.Extensions;
 
 namespace GBF.trait.TraitChara_Custom
 {
@@ -94,8 +93,8 @@ public class TraitVajraChara : TraitChara
         if (container == null) return;
         
         // 检查任务完成标志 / 任務完了フラグをチェック / Check mission completion flag
-        int hascidalamission1 = pc.GetFlagValue("cm1end2");
-        int hasClarissemission1 = pc.GetFlagValue("Clarissemissionend1");
+        int hascidalamission1 = pc.GetInt("cm1end2");
+        int hasClarissemission1 = pc.GetInt("Clarissemissionend1");
         
         // 如果任务完成度 >= 1 / 任務完了度が1以上の場合は / If mission completion >= 1
         if (hascidalamission1 >= 1)

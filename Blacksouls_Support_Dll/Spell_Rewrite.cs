@@ -5,15 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using Cwl.API.Processors;
 using Microsoft.CodeAnalysis;
 using HarmonyLib;
 using BepInEx;
 using BepInEx.Configuration;
-using Cwl;
-using Cwl.API.Custom;
 using BS.magicshop;
-using Cwl.LangMod;
 using static QuestCraft;
 using System.Reflection;
 
@@ -471,19 +467,16 @@ namespace Spell_Rewrite
                 SourceElement.Row row = sources.elements.rows.FirstOrDefault((SourceElement.Row r) => r.alias == magic);
                 if (row == null)
                 {
-                    Debug.LogError("ES_Fix_Nus".Loc(magic));
                     continue;
                 }
 
                 row.value *= (int)BSmagicshop.SBookValue.Value;
                 row.cost = new int[1] { (int)((float)row.cost[0] * BSmagicshop.MPcost.Value) };
                 row.radius *= (int)BSmagicshop.Sdistance.Value;
-                Debug.Log("ES_Fix_Done".Loc(row.alias, row.radius, row.cost[0], row.value));
             }
 
             sources.elements.Reset();
             sources.elements.Init();
-            Debug.Log("ES_Fix_AllDone".Loc());
         }
 
         /// <summary>

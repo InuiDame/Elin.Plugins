@@ -6,9 +6,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using BepInEx;
 using BepInEx.Configuration;
-using Cwl.API.Custom;
-using Cwl.Helper.Unity;
-using Cwl.LangMod;
 using GBF.Modinfo;
 using HarmonyLib;
 using UnityEngine;
@@ -27,7 +24,7 @@ namespace Condition_MountainHealing
     [HarmonyPatch(typeof(Card), nameof(Card.HealHPHost))]
     static class Patch_HealHPHost_InjectBoost2
     {
-        static void Prefix(Chara __instance, int a, HealSource origin)
+        static void Prefix(Chara __instance, long a, HealSource origin)
         {
             // 检查是否存在大地治愈效果 / Check if Earth Healing effect exists / 大地の治癒効果が存在するか確認
             var buff = __instance.GetCondition<ConGBFEarth4>();
@@ -39,7 +36,7 @@ namespace Condition_MountainHealing
             }
         }
         // END属性治疗加成计算 / END attribute healing bonus calculation / END属性治療ボーナス計算
-        public static float EndBoost(int end)
+        public static float EndBoost(long end)
         {
             // 基础加成计算：每400 END提供2%加成 / Base bonus calculation: 2% per 400 END / 基本ボーナス計算：400 ENDごとに2%ボーナス
             float boost = (end / 400f) * 0.02f;

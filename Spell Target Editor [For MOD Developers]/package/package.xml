@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meta>
+  <title>Spell Target Editor [For MOD Developers]</title>
+  <id>SpellTargetEditor</id>
+  <author>inui</author>
+  <loadPriority>100</loadPriority>
+  <version>0.23.338</version>
+  <description> 
+  
+  修改了法术目标的加载方式，在兼容原版运用的同时添加了更多自定义目标。
+  
+  如何使用：
+  
+  编辑你的Element表，修改或者创建一个新法术，在proc一栏填下内容
+  
+  例子：一个普通的法术给目标上Buff/Debuff时，proc一栏通常会填入：Buff,BuffA，或者Debuff,BuffB
+  
+  而本mod添加了以下判定
+  
+  buffself：为自身添加buff
+  bufftarget：为目标添加buff
+  buffteam：为队友添加buff
+  buffall：不分敌我全员添加buff
+  bufffriendly：为友方添加buff
+  
+  如何使用？
+  
+  例子：这个法术将在攻击目标的同时为自身添加两个buff，同时为敌方添加一个debuff：Buff,buffself,BuffA,BuffB,bufftarget,DebuffA
+  
+  补丁采用的高兼容性，所以修补的是Buff后面的内容，而并非凭空制造proc。
+  
+  如果例子看不明白，可以将你想要制作的方向留在留言区。
+  
+  本MOD独立自我的GBFMOD，如果在同时启用两个MOD时会自动关闭该MOD防止冲突。
+
+</description>
+<tags>General,QoL,Utility</tags>
+</Meta>

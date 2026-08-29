@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cwl.LangMod;
 using UnityEngine;
 
 namespace ExtraSpell;
@@ -16,7 +15,7 @@ internal static class SpellTools
             var row = sources.elements.rows.FirstOrDefault(r => r.alias == magic);
             if (row == null)
             {
-                Debug.LogError($"ES_Fix_Nus".Loc(magic));
+                Debug.LogError(string.Format(Lang.Get("ES_Fix_Nus"), magic));
                 continue;
             }
 
@@ -24,12 +23,12 @@ internal static class SpellTools
             row.cost = [(int)(row.cost[0] * MagicReprog.MPcost.Value)];
             row.radius *= (int)MagicReprog.Sdistance.Value;
 
-            Debug.Log("ES_Fix_Done".Loc(row.alias,row.radius,row.cost[0],row.value));
+            Debug.Log(string.Format(Lang.Get("ES_Fix_Done"), row.alias, row.radius, row.cost[0], row.value));
         }
 
         sources.elements.Reset();
         sources.elements.Init();
-        Debug.Log("ES_Fix_AllDone".Loc());
+        Debug.Log(Lang.Get("ES_Fix_AllDone"));
     }
 
     internal static List<Point> ListPointsInStar(Point center, float radius, Map map, bool ro = false)

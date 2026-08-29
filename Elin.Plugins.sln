@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonsterInvasionMod", "Monst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBFWeaponGrid", "GBFWeaponGrid\GBFWeaponGrid.csproj", "{4A02E3D1-6001-4F80-8BB2-466C9B5F1D0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spell Target Editor", "Spell Target Editor [For MOD Developers]\Spell Target Editor.csproj", "{2FBAFEA2-AC3F-4576-9687-649891FE27FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{4A02E3D1-6001-4F80-8BB2-466C9B5F1D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A02E3D1-6001-4F80-8BB2-466C9B5F1D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A02E3D1-6001-4F80-8BB2-466C9B5F1D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FBAFEA2-AC3F-4576-9687-649891FE27FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FBAFEA2-AC3F-4576-9687-649891FE27FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FBAFEA2-AC3F-4576-9687-649891FE27FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FBAFEA2-AC3F-4576-9687-649891FE27FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

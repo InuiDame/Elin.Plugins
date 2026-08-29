@@ -6,9 +6,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using BepInEx;
 using BepInEx.Configuration;
-using Cwl.API.Custom;
-using Cwl.Helper.Unity;
-using Cwl.LangMod;
 using GBF.Modinfo;
 using HarmonyLib;
 using UnityEngine;
@@ -23,6 +20,7 @@ namespace GBF.Patch_ActEffect_Proc_Modify_the_usage_method_of_Buff_to_select_mul
     [HarmonyPatch(typeof(ActEffect))]
     internal class BuffSelfPatch
     {
+        private static readonly HashSet<Card> _selfBuffedCasters = new HashSet<Card>();
         [HarmonyPatch(nameof(ActEffect.Proc), new Type[] { 
             typeof(EffectId), typeof(int), typeof(BlessedState), typeof(Card), typeof(Card), typeof(ActRef) 
         })]
@@ -37,6 +35,9 @@ namespace GBF.Patch_ActEffect_Proc_Modify_the_usage_method_of_Buff_to_select_mul
         {
             try
             {
+                bool IsKeyword(string s) => s == "buffself" || s == "bufftarget" ||
+                                            s == "buffteam"  || s == "buffall"   ||
+                                            s == "bufffriendly";
                 Debug.Log($"BuffSelfPatch: 进入补丁, id={id}, n1={actRef.n1}");  // 记录进入补丁 / Log entering patch / パッチ進入を記録
                 
                 // 检查是否是 buffself 效果 / Check if it's buffself effect / buffself効果か確認
@@ -46,74 +47,135 @@ namespace GBF.Patch_ActEffect_Proc_Modify_the_usage_method_of_Buff_to_select_mul
                     
                     // 解析参数 / Parse parameters / パラメータを解析
                     string[] parameters = actRef.n1.Split(',');
-                    string selfBuffName = null;    // 自身buff名称 / Self buff name / 自身バフ名
-                    string targetBuffName = null;  // 目标buff名称 / Target buff name / ターゲットバフ名
+                    var selfBuffNames   = new List<string>();
+                    var targetBuffNames = new List<string>();  // 原来的 bufftarget
+                    var teamBuffNames   = new List<string>();  // buffteam
+                    var allBuffNames    = new List<string>();  // buffall
+                    var friendlyBuffNames = new List<string>();// bufffriendly
 
+                    // ---------- 解析参数 ----------
                     for (int i = 0; i < parameters.Length; i++)
                     {
                         string param = parameters[i].Trim();
-                        if (param == "buffself" && i + 1 < parameters.Length)
+                        if (param == "buffself")
                         {
-                            selfBuffName = parameters[i + 1].Trim();
-                            // 检查是否是有效的buff名称（不是bufftarget等关键字） / Check if valid buff name (not keywords like bufftarget) / 有効なバフ名か確認（bufftargetなどのキーワードでない）
-                            if (!string.IsNullOrEmpty(selfBuffName) && !selfBuffName.StartsWith("buff"))
-                            {
-                                i++;
-                            }
-                            else
-                            {
-                                selfBuffName = null;
-                            }
+                            while (i + 1 < parameters.Length && !IsKeyword(parameters[i + 1].Trim()))
+                                selfBuffNames.Add(parameters[++i].Trim());
                         }
-                        else if (param == "bufftarget" && i + 1 < parameters.Length)
+                        else if (param == "bufftarget")
                         {
-                            targetBuffName = parameters[i + 1].Trim();
-                            if (!string.IsNullOrEmpty(targetBuffName) && !targetBuffName.StartsWith("buff"))
-                            {
-                                i++;
-                            }
-                            else
-                            {
-                                targetBuffName = null;
-                            }
+                            while (i + 1 < parameters.Length && !IsKeyword(parameters[i + 1].Trim()))
+                                targetBuffNames.Add(parameters[++i].Trim());
+                        }
+                        else if (param == "buffteam")
+                        {
+                            while (i + 1 < parameters.Length && !IsKeyword(parameters[i + 1].Trim()))
+                                teamBuffNames.Add(parameters[++i].Trim());
+                        }
+                        else if (param == "buffall")
+                        {
+                            while (i + 1 < parameters.Length && !IsKeyword(parameters[i + 1].Trim()))
+                                allBuffNames.Add(parameters[++i].Trim());
+                        }
+                        else if (param == "bufffriendly")
+                        {
+                            while (i + 1 < parameters.Length && !IsKeyword(parameters[i + 1].Trim()))
+                                friendlyBuffNames.Add(parameters[++i].Trim());
                         }
                     }
 
-                    // 如果没有解析到buff名称，尝试使用 aliasEle 作为备选 / If no buff name parsed, try using aliasEle as alternative / バフ名が解析されない場合、aliasEleを代替として使用
-                    if (string.IsNullOrEmpty(selfBuffName) && !string.IsNullOrEmpty(actRef.aliasEle))
+                    // 如果 buffself 没有解析到任何名称，且 aliasEle 存在，则用它作为自身 buff
+                    if (selfBuffNames.Count == 0 && !string.IsNullOrEmpty(actRef.aliasEle))
                     {
-                        selfBuffName = actRef.aliasEle;
-                        Debug.Log($"BuffSelfPatch: 使用aliasEle作为buff名称: {selfBuffName}");  // 使用备选名称 / Using alternative name / 代替名を使用
+                        selfBuffNames.Add(actRef.aliasEle);
                     }
 
-                    bool handled = false;
+                    bool anyAdded = false;
 
-                    // 给施法者自己添加buff / Add buff to caster self / キャスター自身にバフを追加
-                    if (cc != null && cc.isChara && !string.IsNullOrEmpty(selfBuffName))
+                    // ----- 1. buffself：只对施法者添加一次（群体时只加一次）-----
+                    if (cc != null && cc.isChara && selfBuffNames.Count > 0)
                     {
-                        Debug.Log($"BuffSelfPatch: 给施法者添加buff: {selfBuffName}");
-                        Condition selfCondition = Condition.Create(selfBuffName, power);  // 创建自身buff / Create self buff / 自身バフを作成
-                        cc.Chara.AddCondition(selfCondition);
-                        handled = true;
+                        if (!_selfBuffedCasters.Contains(cc))
+                        {
+                            foreach (var name in selfBuffNames)
+                            {
+                                Condition cond = Condition.Create(name, power);
+                                cc.Chara.AddCondition(cond);
+                                Debug.Log($"BuffSelfPatch: 给施法者 {cc} 添加自身buff {name}");
+                            }
+                            _selfBuffedCasters.Add(cc);
+                            anyAdded = true;
+                        }
+                        else
+                        {
+                            Debug.Log($"BuffSelfPatch: 施法者 {cc} 已添加过自身buff，跳过重复");
+                        }
                     }
 
-                    // 给目标添加buff / Add buff to target / ターゲットにバフを追加
-                    if (tc != null && tc.isChara && !string.IsNullOrEmpty(targetBuffName))
+// ----- 2. bufftarget：原目标（无论敌友）-----
+                    if (tc != null && tc.isChara && targetBuffNames.Count > 0)
                     {
-                        Debug.Log($"BuffSelfPatch: 给目标添加buff: {targetBuffName}");
-                        Condition targetCondition = Condition.Create(targetBuffName, power);  // 创建目标buff / Create target buff / ターゲットバフを作成
-                        tc.Chara.AddCondition(targetCondition);
-                        handled = true;
+                        foreach (var name in targetBuffNames)
+                        {
+                            Condition cond = Condition.Create(name, power);
+                            tc.Chara.AddCondition(cond);
+                            Debug.Log($"BuffSelfPatch: 给目标 {tc} 添加buff {name} (bufftarget)");
+                        }
+                        anyAdded = true;
                     }
-
-                    if (handled)
+                    
+                    // ----- 3. buffteam：队友（自身以外的友方）-----
+                    if (tc != null && tc.isChara && teamBuffNames.Count > 0)
                     {
-                        Debug.Log("BuffSelfPatch: 成功处理buff，跳过原方法");  // 成功处理，跳过原方法 / Successfully handled, skip original method / 成功処理、元のメソッドをスキップ
-                        return false; // 跳过原方法 / Skip original method / 元のメソッドをスキップ
+                        // 使用游戏内置的 IsFriendOrAbove 判断
+                        if (tc != cc && cc.Chara.IsFriendOrAbove(tc.Chara))
+                        {
+                            foreach (var name in teamBuffNames)
+                            {
+                                Condition cond = Condition.Create(name, power);
+                                tc.Chara.AddCondition(cond);
+                                Debug.Log($"BuffSelfPatch: 给队友 {tc} 添加buff {name} (buffteam)");
+                            }
+                            anyAdded = true;
+                        }
+                    }
+                    
+                    // ----- 4. buffall：所有目标（无差别）-----
+                    if (tc != null && tc.isChara && allBuffNames.Count > 0)
+                    {
+                        foreach (var name in allBuffNames)
+                        {
+                            Condition cond = Condition.Create(name, power);
+                            tc.Chara.AddCondition(cond);
+                            Debug.Log($"BuffSelfPatch: 给目标 {tc} 添加buff {name} (buffall)");
+                        }
+                        anyAdded = true;
+                    }
+                    
+                    // ----- 5. bufffriendly：友方（自身以外的友方）-----
+                    if (tc != null && tc.isChara && friendlyBuffNames.Count > 0)
+                    {
+                        // 同样使用 IsFriendOrAbove，并排除自身
+                        if (tc != cc && cc.Chara.IsFriendOrAbove(tc.Chara))
+                        {
+                            foreach (var name in friendlyBuffNames)
+                            {
+                                Condition cond = Condition.Create(name, power);
+                                tc.Chara.AddCondition(cond);
+                                Debug.Log($"BuffSelfPatch: 给友方 {tc} 添加buff {name} (bufffriendly)");
+                            }
+                            anyAdded = true;
+                        }
+                    }
+                    
+                    if (anyAdded)
+                    {
+                        Debug.Log("BuffSelfPatch: 成功处理buff，跳过原方法");
+                        return false; // 跳过原方法
                     }
                     else
                     {
-                        Debug.LogWarning("BuffSelfPatch: 检测到buffself但没有找到有效的buff名称");  // 警告：未找到有效名称 / Warning: No valid name found / 警告：有効な名前が見つからない
+                        Debug.LogWarning("BuffSelfPatch: 检测到buffself但没有有效的buff名称或目标");
                     }
                 }
             }

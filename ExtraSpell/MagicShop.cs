@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using HarmonyLib;
 using UnityEngine;
-using Cwl.LangMod;
 
 namespace ExtraSpell;
 
@@ -29,7 +28,7 @@ public class MagicShop
             }
             catch (Exception e)
             {
-                Debug.LogError("ES_Shop_BagSpawnError".Loc(e.Message));
+                Debug.LogError(string.Format(Lang.Get("ES_Shop_BagSpawnError"), e.Message));
                 return;
             }
         }
@@ -55,14 +54,15 @@ public class MagicShop
                     alias = aliasStr;
                     break;
                 default:
-                    Debug.LogError("ES_Shop_FormatError".Loc(selectedPart.GetType()));
+                    Debug.LogError(string.Format(Lang.Get("ES_Shop_FormatError"), selectedPart.GetType()));
                     continue;
             }
 
             if (!EClass.sources.elements.alias.ContainsKey(alias))
             {
-                EClass.pc.TalkRaw("*"+"ES_Shop_Nus".Loc(alias));
-                Debug.LogError("ES_Shop_Nus".Loc(alias));
+                EClass.pc.TalkRaw("*" + string.Format(Lang.Get("ES_Shop_Nus"), alias));
+                Debug.LogError(string.Format(Lang.Get("ES_Shop_Nus"), alias));
+
                 continue;
             }
             shop.AddThing(ThingGen.CreateSpellbook(alias).Identify(false));

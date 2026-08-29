@@ -4,15 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cwl.API.Attributes;
-using Cwl.API.Custom;
-using Cwl.Helper.Unity;
-using GBF.ModuleFunction.CharaPortrait;
 using HarmonyLib;
 using UnityEngine;
 using System.IO;
-using ACS.API;
-using Cwl.Helper.Extensions;
 
 namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
 {
@@ -24,7 +18,7 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
     {
         private static readonly int _mainTex = Shader.PropertyToID("_MainTex"); // 主纹理属性ID / Main texture property ID / メインテクスチャプロパティID
 
-        [CwlContextMenu("gbf_ui_cidala_combine")]
+        [ElinContextMenuEntry("gbf_ui_cidala_combine")]
         private static void SwitchToCidala2()
         {
             ChangeCharacterSprite("Cidala", "Cidala2", "Cidala2");
@@ -37,7 +31,7 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
             RemoveCharacterAction("Cidala", 140025);
         }
 
-        [CwlContextMenu("gbf_ui_cidala_twin")]
+        [ElinContextMenuEntry("gbf_ui_cidala_twin")]
         private static void SwitchToCidala1()
         {
             ChangeCharacterSprite("Cidala", "Cidala", "Cidala");
@@ -50,19 +44,19 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
             RemoveCharacterAction("Cidala", 170058);
         }
 
-        [CwlContextMenu("gbf_ui_cidala_Bag")]
+        [ElinContextMenuEntry("gbf_ui_cidala_Bag")]
         private static void SwitchToCidala3()
         {
             ChangeCharacterSprite("Cidala", "Cidala3", "Cidala3");
         }
         
-        [CwlContextMenu("gbf_ui_cidala_Stripes")]
+        [ElinContextMenuEntry("gbf_ui_cidala_Stripes")]
         private static void SwitchToCidala4()
         {
             ChangeCharacterSprite("Cidala", "Cidala4", "Cidala4");
         }
 
-        [CwlContextMenu("gbf_ui_Vajra_normal")]
+        [ElinContextMenuEntry("gbf_ui_Vajra_normal")]
         private static void SwitchToVajra1()
         {
 
@@ -83,7 +77,7 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
 
         }
 
-        [CwlContextMenu("gbf_ui_Vajra_sea")]
+        [ElinContextMenuEntry("gbf_ui_Vajra_sea")]
         private static void SwitchToVajra2()
         {
 
@@ -103,21 +97,21 @@ namespace GBF.ModuleFunction.Switch_Spirte_ContextMenu_Button
             RemoveCharacterFeat("Vajra", 170038);
         }
 
-        [CwlContextMenu("gbf_ui_Vajra_spring")]
+        [ElinContextMenuEntry("gbf_ui_Vajra_spring")]
         private static void SwitchToVajra3()
         {
 
             ChangeCharacterSprite("Vajra", "Vajra3", "Vajra3");
 
         }
-        [CwlContextMenu("gbf_ui_Vajra_newyear")]
+        [ElinContextMenuEntry("gbf_ui_Vajra_newyear")]
         private static void SwitchToVajra4()
         {
 
             ChangeCharacterSprite("Vajra", "Vajra4", "Vajra4");
 
         }
-        [CwlContextMenu("gbf_ui_Vajra_halloween")]
+        [ElinContextMenuEntry("gbf_ui_Vajra_halloween")]
         private static void SwitchToVajra5()
         {
 

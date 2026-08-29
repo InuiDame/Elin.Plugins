@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <Platforms>AnyCPU</Platforms>
+        <LangVersion>preview</LangVersion>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Spell Target Editor</RootNamespace>
+        <AssemblyName>Spell Target Editor</AssemblyName>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>$(ElinGamePath)\Package\Mod_$(AssemblyName)\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+        <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="package\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="package\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="package\**" />
+      <None Remove="Directory.Build.props" />
+      <None Remove="LICENSE" />
+      <None Remove="README.md" />
+    </ItemGroup>
+	
+	  <ItemGroup>
+        <Reference Include="$(ElinGamePath)\Elin_Data\Managed\System.Net.Http.dll">
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+    
+    <Target Name="CopyAssets" AfterTargets="AfterBuild">
+        <ItemGroup>
+            <Assets Include="package\**\*.*" />
+        </ItemGroup>
+
+        <Copy
+                SourceFiles="@(Assets)"
+                DestinationFiles="@(Assets->'$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')"
+                SkipUnchangedFiles="true"
+        />
+    </Target>
+</Project>

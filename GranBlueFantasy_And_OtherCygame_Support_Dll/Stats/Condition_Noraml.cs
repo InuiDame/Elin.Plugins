@@ -6,9 +6,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using BepInEx;
 using BepInEx.Configuration;
-using Cwl.API.Custom;
-using Cwl.Helper.Unity;
-using Cwl.LangMod;
 using GBF.Modinfo;
 using HarmonyLib;
 using UnityEngine;
@@ -309,6 +306,11 @@ namespace Condition_Noraml
     }
     
     public class ConSK2561 : Timebuff
+    {
+        public override int GetPhase() => 0;
+    }
+    
+    public class ConSK2904 : Timebuff
     {
         public override int GetPhase() => 0;
     }

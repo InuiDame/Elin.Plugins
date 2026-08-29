@@ -5,9 +5,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using BepInEx;
 using BepInEx.Configuration;
-using Cwl.API.Custom;
-using Cwl.Helper.Unity;
-using Cwl.LangMod;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +16,7 @@ namespace Condition_Patch_HealHPBoost
     static class Patch_HealHPHost_InjectBoost
     {
         // Prefix在原始方法之前运行；如果有buff则调整'amount' / Prefix runs before original method; adjust 'amount' if buff present / Prefixは元のメソッドの前に実行；バフがある場合は'amount'を調整
-        static void Prefix(Chara __instance, int a, HealSource origin)
+        static void Prefix(Chara __instance, long a, HealSource origin)
         {
             // 查询是否有我们的自定义buff / Check if our custom buff is present / カスタムバフが存在するか確認
             var buff = __instance.GetCondition<Connatsu_sk1>();
@@ -33,7 +30,7 @@ namespace Condition_Patch_HealHPBoost
         }
         
         // 基于MAG属性的治疗加成计算 / Healing bonus calculation based on MAG attribute / MAG属性に基づく治療ボーナス計算
-        public static float MagBoost(int mag)
+        public static float MagBoost(long mag)
         {
             // 先算出线性部分：每 400 MAG => +0.02 / First calculate linear part: every 400 MAG => +0.02 / まず線形部分を計算：400 MAGごとに+0.02
             float boost = (mag / 400f) * 0.02f;

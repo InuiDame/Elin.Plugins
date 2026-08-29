@@ -6,9 +6,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using BepInEx;
 using BepInEx.Configuration;
-using Cwl.API.Custom;
-using Cwl.Helper.Unity;
-using Cwl.LangMod;
 using GBF.Modinfo;
 using HarmonyLib;
 using UnityEngine;
@@ -50,6 +47,18 @@ namespace Patch_Shield_Condition
                     AttackSource.Throw,        // 投掷攻击 / Throw attack / 投擲攻撃
                     AttackSource.MagicSword,   // 魔法剑攻击 / Magic sword attack / 魔法剣攻撃
                     AttackSource.Shockwave,    // 冲击波攻击 / Shockwave attack / 衝撃波攻撃
+                    AttackSource.WeaponEnchant,
+                    AttackSource.Trap,
+                    AttackSource.Fall,
+                    AttackSource.Finish,
+                    AttackSource.Hang,
+                    AttackSource.Wrath,
+                    AttackSource.ManaBackfire,
+                    AttackSource.DeathSentence,
+                    AttackSource.Euthanasia,
+                    AttackSource.MoonSpear,
+                    AttackSource.MagicArrow,
+                    AttackSource.MagicHand,
                     AttackSource.None          // 无来源攻击 / No source attack / ソースなし攻撃
                 };
                 
@@ -90,6 +99,18 @@ namespace Patch_Shield_Condition
                     if (targetChar.HasCondition<ConPCRLunchtime>())
                     {
                         ConPCRLunchtime shield = targetChar.GetCondition<ConPCRLunchtime>();
+                        if (shield.value >= dmg)
+                        {
+                            int num2 = (int)dmg;
+                            shield.Mod(-1 * num2); 
+                            return false;         
+                        }
+                        dmg -= shield.value; 
+                        shield.Kill();       
+                    }
+                    if (targetChar.HasCondition<ConSK2906>())
+                    {
+                        ConSK2906 shield = targetChar.GetCondition<ConSK2906>();
                         if (shield.value >= dmg)
                         {
                             int num2 = (int)dmg;

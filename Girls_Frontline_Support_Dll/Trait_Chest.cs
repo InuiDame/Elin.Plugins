@@ -6,15 +6,10 @@ using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.Reflection.Emit;
 using UnityEngine;
-using Cwl.API.Processors;
 using Microsoft.CodeAnalysis;
 using HarmonyLib;
 using BepInEx;
 using BepInEx.Configuration;
-using Cwl;
-using Cwl.API.Custom;
-using Cwl.LangMod;
-using Cwl.Helper;
 using Newtonsoft.Json;
 using DG.Tweening.Plugins;
 

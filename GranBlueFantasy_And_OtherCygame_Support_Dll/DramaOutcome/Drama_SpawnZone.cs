@@ -4,10 +4,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using Cwl.Helper.Unity;
 using UnityEngine;
-using Cwl.Helper.Extensions;
-using Cwl.LangMod;
 
 namespace GBF.dramaOutcome.Drama_SpawnZone
 {

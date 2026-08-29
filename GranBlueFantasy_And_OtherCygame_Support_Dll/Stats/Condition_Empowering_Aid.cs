@@ -6,9 +6,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using BepInEx;
 using BepInEx.Configuration;
-using Cwl.API.Custom;
-using Cwl.Helper.Unity;
-using Cwl.LangMod;
 using GBF.Modinfo;
 using HarmonyLib;
 using UnityEngine;
@@ -80,7 +77,7 @@ namespace Condition_Empowering_Aid
     static class Patch_HealHPHost_InjectBoost
     {
         // Prefix在原始方法之前运行；如果有buff则调整'amount' / Prefix runs before original method; adjust 'amount' if buff present / Prefixは元のメソッドの前に実行；バフがある場合は'amount'を調整
-        static void Prefix(Chara __instance, int a, HealSource origin)
+        static void Prefix(Chara __instance, long a, HealSource origin)
         {
             // 查询是否有疗护依存buff / Check if Empowering Aid buff is present / ケア・リライアントバフが存在するか確認
             var buff = __instance.GetCondition<ConSK2613>();
@@ -94,7 +91,7 @@ namespace Condition_Empowering_Aid
         }
         
         // DEX属性治疗加成计算 / DEX attribute healing bonus calculation / DEX属性治療ボーナス計算
-        public static float DexBoost(int dex)
+        public static float DexBoost(long dex)
         {
             // 基础加成计算：每400 DEX提供2%加成 / Base bonus calculation: 2% per 400 DEX / 基本ボーナス計算：400 DEXごとに2%ボーナス
             float boost = (dex / 400f) * 0.02f;
